@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zskyer.github.io/"/>
-  <updated>2016-03-21T13:49:42.805Z</updated>
+  <updated>2016-03-21T13:51:23.666Z</updated>
   <id>http://zskyer.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://zskyer.github.io/2016/03/21/hexo/"/>
     <id>http://zskyer.github.io/2016/03/21/hexo/</id>
     <published>2016-03-21T12:27:59.000Z</published>
-    <updated>2016-03-21T13:49:42.805Z</updated>
+    <updated>2016-03-21T13:51:23.666Z</updated>
     
     <content type="html">&lt;p&gt;关于Hexo是什么，以及为什么要用Hexo来搭建静态博客在此不多说，重点记录搭建博客的主要过程，后续会把博客的一些更新也记录在此。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -41,14 +41,8 @@
 &lt;/ul&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ ssh-keygen -t rsa -C &lt;span class=&quot;string&quot;&gt;&quot;你的邮箱地址&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;添加SSH key到Github&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;打开 C:\Users\Administrator.ssh\id_rsa.pub，复制文件中的内容。&lt;/li&gt;
-&lt;li&gt;访问 &lt;a href=&quot;https://github.com/settings/ssh&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/settings/ssh&lt;/a&gt; ，添加新秘钥。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;设置用户信息&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;添加SSH key到Github&lt;/li&gt;
+&lt;li&gt;设置用户信息&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git config --global user.name &lt;span class=&quot;string&quot;&gt;&quot;用户名&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git config --global user.email &lt;span class=&quot;string&quot;&gt;&quot;邮箱&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&quot;配置Hexo主题&quot;&gt;&lt;a href=&quot;#配置Hexo主题&quot; class=&quot;headerlink&quot; title=&quot;配置Hexo主题&quot;&gt;&lt;/a&gt;配置Hexo主题&lt;/h3&gt;&lt;ul&gt;
