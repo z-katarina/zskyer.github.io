@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zskyer.github.io/"/>
-  <updated>2016-03-30T06:05:44.401Z</updated>
+  <updated>2016-03-30T06:33:41.617Z</updated>
   <id>http://zskyer.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://zskyer.github.io/2016/03/28/jvm/"/>
     <id>http://zskyer.github.io/2016/03/28/jvm/</id>
     <published>2016-03-28T14:39:47.000Z</published>
-    <updated>2016-03-30T06:05:44.401Z</updated>
+    <updated>2016-03-30T06:33:41.617Z</updated>
     
     <content type="html">&lt;p&gt;总结的有关java虚拟机的一些经典面试题，包括内存模型、类加载机制、垃圾回收机制等。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -150,7 +150,6 @@
 &lt;li&gt;-XX:MaxPermSize            最大持久代内存大小&lt;/li&gt;
 &lt;li&gt;-XX:NewSize                新生代内存大小&lt;/li&gt;
 &lt;li&gt;-XX:MaxNewSize             最大新生代内存大小&lt;/li&gt;
-&lt;li&gt;-XX:ReservedCodeCacheSize  编译代码时的缓存空间大小&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;调优措施&quot;&gt;&lt;a href=&quot;#调优措施&quot; class=&quot;headerlink&quot; title=&quot;调优措施&quot;&gt;&lt;/a&gt;调优措施&lt;/h3&gt;&lt;blockquote&gt;
@@ -184,7 +183,7 @@
     <link href="http://zskyer.github.io/2016/03/21/hexo/"/>
     <id>http://zskyer.github.io/2016/03/21/hexo/</id>
     <published>2016-03-21T12:27:59.000Z</published>
-    <updated>2016-03-28T10:07:52.358Z</updated>
+    <updated>2016-03-30T06:34:34.714Z</updated>
     
     <content type="html">&lt;p&gt;关于Hexo是什么，以及为什么要用Hexo来搭建静态博客在此不多说，重点记录搭建博客的主要过程，后续会把博客的一些更新也记录在此。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -218,6 +217,23 @@
 &lt;/ul&gt;
 &lt;h3 id=&quot;自动生成Tag-Cloud标签云页面&quot;&gt;&lt;a href=&quot;#自动生成Tag-Cloud标签云页面&quot; class=&quot;headerlink&quot; title=&quot;自动生成Tag Cloud标签云页面&quot;&gt;&lt;/a&gt;自动生成Tag Cloud标签云页面&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;参考原作者博文 &lt;a href=&quot;http://moxfive.xyz/2015/10/25/hexo-tag-cloud/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://moxfive.xyz/2015/10/25/hexo-tag-cloud/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;置顶文章方法&quot;&gt;&lt;a href=&quot;#置顶文章方法&quot; class=&quot;headerlink&quot; title=&quot;置顶文章方法&quot;&gt;&lt;/a&gt;置顶文章方法&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;参考：&lt;a href=&quot;http://www.netcan666.com/2015/11/22/%E8%A7%A3%E5%86%B3Hexo%E7%BD%AE%E9%A1%B6%E9%97%AE%E9%A2%98/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;解决Hexo文章置顶问题&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;编辑这个文件：node_modules/hexo-generator-index/lib/generator.js&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// var posts = locals.posts.sort(config.index_generator.order_by);&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; posts = locals.posts;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;posts.data = posts.data.sort(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;a, b&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(a.top &amp;amp;&amp;amp; b.top) &amp;#123; &lt;span class=&quot;comment&quot;&gt;// 两篇文章top都有定义&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(a.top == b.top) &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; b.date - a.date; &lt;span class=&quot;comment&quot;&gt;// 若top值一样则按照文章日期降序排&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; b.top - a.top; &lt;span class=&quot;comment&quot;&gt;// 否则按照top值降序排&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(a.top &amp;amp;&amp;amp; !b.top) &amp;#123; &lt;span class=&quot;comment&quot;&gt;// 以下是只有一篇文章top有定义，那么将有top的排在前面&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(!a.top &amp;amp;&amp;amp; b.top) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; b.date - a.date; &lt;span class=&quot;comment&quot;&gt;// 都没定义按照文章日期降序排&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;然后在文章头部的：Front-matter位置加上一个：top: 1000的内容。数值越大，越靠前。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;常用插件安装&quot;&gt;&lt;a href=&quot;#常用插件安装&quot; class=&quot;headerlink&quot; title=&quot;常用插件安装&quot;&gt;&lt;/a&gt;常用插件安装&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;支持RSS：npm install hexo-generator-feed –save&lt;/li&gt;
+&lt;li&gt;生成站点地图：npm install hexo-generator-sitemap –save&lt;/li&gt;
+&lt;li&gt;生成百度站点地图：npm install hexo-generator-baidu-sitemap –save&lt;/li&gt;
+&lt;li&gt;HTML 压缩：npm install hexo-html-minifier –save&lt;/li&gt;
+&lt;li&gt;JavaScript 压缩：npm install hexo-uglify –save&lt;/li&gt;
+&lt;li&gt;CSS 压缩插件：npm install hexo-clean-css –save&lt;/li&gt;
+&lt;li&gt;SEO优化：npm install hexo-generator-seo-friendly-sitemap&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;域名配置&quot;&gt;&lt;a href=&quot;#域名配置&quot; class=&quot;headerlink&quot; title=&quot;域名配置&quot;&gt;&lt;/a&gt;域名配置&lt;/h2&gt;&lt;h3 id=&quot;费域名申请&quot;&gt;&lt;a href=&quot;#费域名申请&quot; class=&quot;headerlink&quot; title=&quot;费域名申请&quot;&gt;&lt;/a&gt;费域名申请&lt;/h3&gt;&lt;p&gt;在校大学生可以申请Github Education提供的免费域名一年（实际还有更多优惠），申请网址 &lt;a href=&quot;https://education.github.com/pack/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://education.github.com/pack/&lt;/a&gt; ，因申请人过多，且假的edu邮箱泛滥，故现需要通过提供学生证或者成绩单证明，申请时间一般两到三天。进入 &lt;a href=&quot;https://nc.me/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://nc.me/&lt;/a&gt; ，填写你要注册的域名，加入购物车，选择Github Pages Setup，填写edu邮箱，注册一个namecheap账号，进入&lt;a href=&quot;https://ap.www.namecheap.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://ap.www.namecheap.com/&lt;/a&gt; ，即可看到已经购买成功的.me域名。&lt;/p&gt;
 &lt;h3 id=&quot;域名参数修改&quot;&gt;&lt;a href=&quot;#域名参数修改&quot; class=&quot;headerlink&quot; title=&quot;域名参数修改&quot;&gt;&lt;/a&gt;域名参数修改&lt;/h3&gt;&lt;p&gt;在namecheap个人页面，点击MANAGE按钮，再选择Advanced DNS。注意，如果是按照我之前方法进行申请的话，此处参数不需要修改。192.30.252.153 和 192.30.252.154 为默认的Github官方提供的两个IP地址。&lt;/p&gt;
