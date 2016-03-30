@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java面试复习（JVM） | 小天碎碎念</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="description" content="总结的有关java虚拟机的一些经典面试题，包括内存模型、类加载机制、垃圾回收机制等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java面试复习（JVM）">
+<meta property="og:url" content="http://zskyer.github.io/2016/03/28/jvm/index.html">
+<meta property="og:site_name" content="小天碎碎念">
+<meta property="og:description" content="总结的有关java虚拟机的一些经典面试题，包括内存模型、类加载机制、垃圾回收机制等。">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/jvm.png">
+<meta property="og:updated_time" content="2016-03-30T06:05:44.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java面试复习（JVM）">
+<meta name="twitter:description" content="总结的有关java虚拟机的一些经典面试题，包括内存模型、类加载机制、垃圾回收机制等。">
+<meta name="twitter:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/jvm.png">
+  
+    <link rel="alternative" href="/atom.xml" title="小天碎碎念" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  
+      <link href="//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css" rel="stylesheet">
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/photo.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">AllSKY</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">永远对编码保持九分的热情</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">学无止境</a></li>
+                        
+                            <li><a href="/categories/碎碎念/">朝花夕拾</a></li>
+                        
+                            <li><a href="/photos/">时光不老</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/xiaotian.seu@gmail.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/xiaotianzhou" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/zskyer" title="GitHub"></a></li>
+                            
+                                <li id="知乎"><a class="知乎" target="_blank" href="https://www.zhihu.com/people/xiaotian.seu" title="知乎"></a></li>
+                            
+                                <li id="网易云音乐"><a class="网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=74518075" title="网易云音乐"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Github/" style="font-size: 10px">Github</a> <a href="/tags/Hexo/" style="font-size: 10px">Hexo</a> <a href="/tags/JVM/" style="font-size: 10px">JVM</a> <a href="/tags/面试/" style="font-size: 10px">面试</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.oschina.net/">开源中国</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.cnblogs.com/">博客园</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.jobbole.com/">伯乐在线</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://code.youmeek.com/">Youmeek</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.netcan666.com/">NetCan</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">moxfive</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">AllSKY</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/photo.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">AllSKY</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">永远对编码保持九分的热情</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">学无止境</a></li>
+                
+                    <li><a href="/categories/碎碎念/">朝花夕拾</a></li>
+                
+                    <li><a href="/photos/">时光不老</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/xiaotian.seu@gmail.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/xiaotianzhou" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/zskyer" title="GitHub"></a></li>
+                            
+                                <li id="知乎"><a class="知乎" target="_blank" href="https://www.zhihu.com/people/xiaotian.seu" title="知乎"></a></li>
+                            
+                                <li id="网易云音乐"><a class="网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=74518075" title="网易云音乐"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-jvm" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/28/jvm/" class="article-date">
+      <time datetime="2016-03-28T14:39:47.000Z" itemprop="datePublished">2016-03-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        <h1 class="article-title" itemprop="name">
+      Java面试复习（JVM）
+    </h1>
+      </header>
+      
+      <div class="article-info article-info-post">
+        <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+    </div>
+        <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>总结的有关java虚拟机的一些经典面试题，包括内存模型、类加载机制、垃圾回收机制等。</p>
+<a id="more"></a>
+<h2 id="Java内存区域"><a href="#Java内存区域" class="headerlink" title="Java内存区域"></a>Java内存区域</h2><p><img src="http://7xsdr2.com1.z0.glb.clouddn.com/jvm.png" alt="jvm内存模型"></p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><blockquote>
+<ul>
+<li>一块较小的内存空间，它是当前线程所执行的字节码的行号指示器，字节码解释器工作时通过改变该计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖它来完成。</li>
+<li>每条线程都有一个独立的程序计数器，各线程间的计数器互不影响，独立存储，因此该区域是线程私有的。</li>
+<li>如果线程正在执行的是一个Java方法，该计数器记录的是正在执行的虚拟机字节码指令的地址，当线程在执行的是Native方法时，该计数器的值为空。</li>
+<li>该内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域。</li>
+</ul>
+</blockquote>
+<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><blockquote>
+<ul>
+<li>该区域是线程私有的，生命周期与线程相同。</li>
+<li>虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧，用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每次方法调用时，一个新的栈帧创建并压栈到栈顶。当方法正常返回或抛出未捕获的异常时，栈帧就会出栈。</li>
+<li>在编译程序代码时，栈帧中需要多大的局部变量表、多深的操作数栈都已经完全确定了。</li>
+<li>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果虚拟机在动态扩展栈时无法申请到足够的内存空间，则抛出OutOfMemoryError异常。</li>
+</ul>
+</blockquote>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><blockquote>
+<ul>
+<li>与虚拟机栈作用类似，区别在于虚拟机栈为虚拟机执行Java方法服务，而本地方法栈则为虚拟机使用到的Native方法服务。</li>
+<li>本地方法栈区域也会抛出StackOverflowError与OutOfMemoryError异常。</li>
+</ul>
+</blockquote>
+<h3 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h3><blockquote>
+<ul>
+<li>Java堆是Java虚拟机所管理的内存中最大的一块，它是所有线程共享的一块内存区域。几乎所有的实例和数组都在这里分配内存，同时也是垃圾收集器管理的主要区域。</li>
+<li>Java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可。</li>
+<li>如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。</li>
+</ul>
+</blockquote>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><blockquote>
+<ul>
+<li>为各个线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。</li>
+<li>不需要连续的内存，可以选择固定大小或可扩展，还可选择不实现垃圾回收。该区域的内存回收目标主要是针对常量池的回收和对类型的卸载。</li>
+<li>常量池用于存放编译期间生成的各种字面量和符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。</li>
+<li>当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。</li>
+</ul>
+</blockquote>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><blockquote>
+<ul>
+<li>直接从操作系统中分配内存，不受Java堆大小的限制，但是会受到本机中总内存的大小及处理器寻址空间的限制，因此它也可能导致OutOfMemoryError异常。</li>
+<li>NIO是一种基于通道与缓冲区的新I/O方式，可以使用Native函数库直接分配堆外内存，然后通过一个存储在Java堆中的DirectByteBuffer对象作为这块内存的引用进行操作。这样能在一些场景中显著提高性能，因为避免了在Java堆和Native堆中来回复制数据。</li>
+</ul>
+</blockquote>
+<h2 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h2><h3 id="内存泄露和内存溢出的区别"><a href="#内存泄露和内存溢出的区别" class="headerlink" title="内存泄露和内存溢出的区别"></a>内存泄露和内存溢出的区别</h3><blockquote>
+<ul>
+<li>内存泄露是指无用对象持续占有内存或无用对象的内存得不到及时释放，从而造成的内存空间的浪费。</li>
+<li>内存溢出是指程序所需要的内存超出了系统所能分配的内存（包括动态扩展）的上限。</li>
+</ul>
+</blockquote>
+<h3 id="内存泄露原因"><a href="#内存泄露原因" class="headerlink" title="内存泄露原因"></a>内存泄露原因</h3><blockquote>
+<ul>
+<li>静态集合类引起的内存泄露</li>
+<li>注册的监听器不再使用以后未关闭</li>
+<li>数据库连接、网络连接、IO连接等没有关闭</li>
+<li>内部类和外部类等的引用</li>
+</ul>
+</blockquote>
+<h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><h3 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h3><blockquote>
+<ul>
+<li>类加载过程包括加载、验证、准备、解析、初始化五个阶段。</li>
+<li>加载阶段通过一个类的全限定名来获取定义此类的二进制字节流；将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构；在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口。</li>
+<li>验证是为了确保Class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。</li>
+<li>准备阶段是为类变量在方法区中分配内存并设置类变量初始值的阶段。</li>
+<li>解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。</li>
+<li>初始化：<ul>
+<li>遇到new、getstatic、putstatic或invokestatic这4条字节码指令时，需先初始化该类。</li>
+<li>如果类存在直接的父类并且这个类还未被初始化，则先初始化父类。</li>
+<li>虚拟机启动时，会先初始化用户指定要执行的一个主类。</li>
+<li>使用java.lang.reflect包的方法对类进行反射调用的时候，需先初始化该类。</li>
+<li>如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄所对应的类没有进行过初始化，则需先初始化。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><blockquote>
+<ul>
+<li>启动类加载器（Bootstrap）：负责加载存放在<java_home>\lib目录中，或者被-Xbootclasspath参数所指定的路径中，并且能被虚拟机识别的类库（如rt.jar，所有的java.*开头的类）。</java_home></li>
+<li>扩展类加载器（Extension）：负责加载<java_home>\lib\ext目录中，或者由java.ext.dirs系统变量指定的路径中所有类库（如javax.*开头的类）。</java_home></li>
+<li>应用程序类加载器（系统类加载器）（Application）：负责加载用户类路径（ClassPath）所指定的类。</li>
+</ul>
+</blockquote>
+<h3 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h3><blockquote>
+<ul>
+<li>双亲委派模型从顶层到底层依次是启动类加载器、扩展类加载器、应用程序类加载器、自定义类加载器。</li>
+<li>除了顶层的启动加载器外，其余的类加载器都应当有自己的父类加载器。这里类加载器之间的父子关系一般不会以继承的关系来实现，而是都使用组合关系来复用父加载器的代码。</li>
+<li>工作过程：如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求（它的搜索范围中没有找到所需的类）时，子加载器才会尝试自己去加载。</li>
+</ul>
+</blockquote>
+<h2 id="垃圾收集机制"><a href="#垃圾收集机制" class="headerlink" title="垃圾收集机制"></a>垃圾收集机制</h2><h3 id="垃圾对象的判定"><a href="#垃圾对象的判定" class="headerlink" title="垃圾对象的判定"></a>垃圾对象的判定</h3><blockquote>
+<ul>
+<li><strong>引用计数算法</strong>：给对象添加一个引用计数器，每当有一个地方引用它时，计数器值就加1，当引用失效时，计数器值减1，任何时刻计数器都为0的对象就是不可能再被使用的。缺点是很难解决对象之间的相互循环引用问题。</li>
+<li><strong>根搜索算法</strong>：通过一系列名为”GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连时，就证明此对象是不可用的。可作为GC Roots的对象包括：<ul>
+<li>虚拟机栈（栈帧中的本地变量表）中引用的对象。</li>
+<li>方法区中各类静态属性引用的对象。</li>
+<li>方法区中常量引用的对象。</li>
+<li>本地方法栈中JNI（即Native方法）引用的对象。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h3><blockquote>
+<ul>
+<li><strong>标记-清除算法</strong>：首先标记出所有需要回收的对象，在标记完成后统一回收所有被标记对象。不足在于：1.标记和清除两个过程的效率不高；2.标记清除之后会产生大量不连续的内存碎片。</li>
+<li><strong>复制算法</strong>：将可用内存按容量划分为大小相等的两块，每次只使用其中一块。当这一块的内存用完了，就将还存活着的对象复制到另一块上面，然后再把已使用过的内存空间一次清理掉。缺点在于浪费空间，且复制操作较多，效率降低。</li>
+<li><strong>标记-整理算法</strong>：标记出所有需要回收的对象，然后让所有存活的对象都向一端移动，最后直接清理掉端边界以外的内存。</li>
+<li><strong>分代收集算法</strong>：把Java堆分为新生代和老年代。在新生代中，每次垃圾收集都发现有大批对象死去，只有少量存活，因此可选用复制算法，只需要付出少量存活对象的复制成本就可以完成收集。而老年代中因为对象存活率高、没有额外空间对它进行分配担保，就必须使用“标记-清除”或者“标记-整理”算法来进行回收。</li>
+<li>注：对于新生代回收，一般将内存分为一块较大的Eden空间和两块较小的Survivor空间，每次使用Eden空间和其中一块Survivor。回收时将Eden和Survivor中还存活的对象一次性复制到另一块Survivor空间上，最后清理掉Eden和刚才用过的Survivor空间。Eden和Survivor大小比例为8:1。当Survivor空间不够时，需要依赖其他内存（老年代）进行分配担保。</li>
+</ul>
+</blockquote>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><blockquote>
+<ul>
+<li>CMS收集器：以获取最短回收停顿时间为目标的收集器，基于“标记-清除”算法实现。 </li>
+<li>G1收集器：1.并行与并发；2.分代收集；3.空间整合；4.可预测的停顿。</li>
+</ul>
+</blockquote>
+<h2 id="性能调优"><a href="#性能调优" class="headerlink" title="性能调优"></a>性能调优</h2><h3 id="JVM参数"><a href="#JVM参数" class="headerlink" title="JVM参数"></a>JVM参数</h3><blockquote>
+<ul>
+<li>-Xms                       初始堆大小</li>
+<li>-Xmx                       最大堆大小</li>
+<li>-Xss                       每个线程的堆栈大小</li>
+<li>-Xmn                       新生代大小</li>
+<li>-XX:PermSize               持久代内存大小</li>
+<li>-XX:MaxPermSize            最大持久代内存大小</li>
+<li>-XX:NewSize                新生代内存大小</li>
+<li>-XX:MaxNewSize             最大新生代内存大小</li>
+<li>-XX:ReservedCodeCacheSize  编译代码时的缓存空间大小</li>
+</ul>
+</blockquote>
+<h3 id="调优措施"><a href="#调优措施" class="headerlink" title="调优措施"></a>调优措施</h3><blockquote>
+<p>-<br>-<br>-<br>-<br>-</p>
+</blockquote>
+<h2 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h2><blockquote>
+<ul>
+<li><a href="http://wiki.jikexueyuan.com/project/java-vm/" target="_blank" rel="external">深入理解Java虚拟机</a></li>
+<li><a href="http://wiki.jikexueyuan.com/project/java-interview-bible/platorm-memory.html" target="_blank" rel="external">Java虚拟机与内存管理</a></li>
+<li>《深入理解Java虚拟机 - JVM高级特性与最佳实践》周志明 著</li>
+</ul>
+</blockquote>
+      
+    </div>
+    
+  </div>
+  
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/03/28/jvm/">Java面试复习（JVM）</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">AllSKY</a></p>
+        <p><span>Created:</span>2016-03-28, 22:39:47</p>
+        <p><span>Updated:</span>2016-03-30, 14:05:44</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/03/28/jvm/" title="Java面试复习（JVM）">http://zskyer.github.io/2016/03/28/jvm/</a>
+            <span class="copy-path" data-clipboard-text="From http://zskyer.github.io/2016/03/28/jvm/　　By AllSKY" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/03/21/hexo/">
+                    Hexo博客搭建
+                </a>
+            </div>
+        
+    </nav>
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java内存区域"><span class="toc-number">1.</span> <span class="toc-text">Java内存区域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#程序计数器"><span class="toc-number">1.1.</span> <span class="toc-text">程序计数器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java虚拟机栈"><span class="toc-number">1.2.</span> <span class="toc-text">Java虚拟机栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地方法栈"><span class="toc-number">1.3.</span> <span class="toc-text">本地方法栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java堆"><span class="toc-number">1.4.</span> <span class="toc-text">Java堆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法区"><span class="toc-number">1.5.</span> <span class="toc-text">方法区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接内存"><span class="toc-number">1.6.</span> <span class="toc-text">直接内存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存泄露"><span class="toc-number">2.</span> <span class="toc-text">内存泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内存泄露和内存溢出的区别"><span class="toc-number">2.1.</span> <span class="toc-text">内存泄露和内存溢出的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存泄露原因"><span class="toc-number">2.2.</span> <span class="toc-text">内存泄露原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载机制"><span class="toc-number">3.</span> <span class="toc-text">类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载过程"><span class="toc-number">3.1.</span> <span class="toc-text">类加载过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载器"><span class="toc-number">3.2.</span> <span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#双亲委派模型"><span class="toc-number">3.3.</span> <span class="toc-text">双亲委派模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾收集机制"><span class="toc-number">4.</span> <span class="toc-text">垃圾收集机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#垃圾对象的判定"><span class="toc-number">4.1.</span> <span class="toc-text">垃圾对象的判定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垃圾收集算法"><span class="toc-number">4.2.</span> <span class="toc-text">垃圾收集算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垃圾收集器"><span class="toc-number">4.3.</span> <span class="toc-text">垃圾收集器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能调优"><span class="toc-number">5.</span> <span class="toc-text">性能调优</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM参数"><span class="toc-number">5.1.</span> <span class="toc-text">JVM参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调优措施"><span class="toc-number">5.2.</span> <span class="toc-text">调优措施</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关参考"><span class="toc-number">6.</span> <span class="toc-text">相关参考</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide" title="Show or Hide Table of Contents">
+<script>
+    var valueHide = "Hide";
+    var valueShow = "Show";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+    <style>
+        .toc {
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            $(".toc li a").mouseover(function() {
+                var title = $(this).find('.toc-text').text();
+                $(this).attr("title", title);
+            });
+        })
+    </script>
+
+
+    <div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/03/28/jvm/" data-title="Java面试复习（JVM）" data-url="http://zskyer.github.io/2016/03/28/jvm/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zsky"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://zskyer.github.io/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+    
+
+
+<div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/03/21/hexo/" title="Next: Hexo博客搭建">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/jvm/">Java面试复习（JVM）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/21/hexo/">Hexo博客搭建</a></li></ul>
+
+
+    <script>
+        
+    </script></div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 AllSKY
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+<script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 10;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+    <script src="//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>

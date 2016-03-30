@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zskyer.github.io/"/>
-  <updated>2016-03-28T10:07:52.358Z</updated>
+  <updated>2016-03-30T06:05:44.401Z</updated>
   <id>http://zskyer.github.io/</id>
   
   <author>
@@ -14,6 +14,170 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java面试复习（JVM）</title>
+    <link href="http://zskyer.github.io/2016/03/28/jvm/"/>
+    <id>http://zskyer.github.io/2016/03/28/jvm/</id>
+    <published>2016-03-28T14:39:47.000Z</published>
+    <updated>2016-03-30T06:05:44.401Z</updated>
+    
+    <content type="html">&lt;p&gt;总结的有关java虚拟机的一些经典面试题，包括内存模型、类加载机制、垃圾回收机制等。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;Java内存区域&quot;&gt;&lt;a href=&quot;#Java内存区域&quot; class=&quot;headerlink&quot; title=&quot;Java内存区域&quot;&gt;&lt;/a&gt;Java内存区域&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xsdr2.com1.z0.glb.clouddn.com/jvm.png&quot; alt=&quot;jvm内存模型&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;程序计数器&quot;&gt;&lt;a href=&quot;#程序计数器&quot; class=&quot;headerlink&quot; title=&quot;程序计数器&quot;&gt;&lt;/a&gt;程序计数器&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;一块较小的内存空间，它是当前线程所执行的字节码的行号指示器，字节码解释器工作时通过改变该计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖它来完成。&lt;/li&gt;
+&lt;li&gt;每条线程都有一个独立的程序计数器，各线程间的计数器互不影响，独立存储，因此该区域是线程私有的。&lt;/li&gt;
+&lt;li&gt;如果线程正在执行的是一个Java方法，该计数器记录的是正在执行的虚拟机字节码指令的地址，当线程在执行的是Native方法时，该计数器的值为空。&lt;/li&gt;
+&lt;li&gt;该内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;Java虚拟机栈&quot;&gt;&lt;a href=&quot;#Java虚拟机栈&quot; class=&quot;headerlink&quot; title=&quot;Java虚拟机栈&quot;&gt;&lt;/a&gt;Java虚拟机栈&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;该区域是线程私有的，生命周期与线程相同。&lt;/li&gt;
+&lt;li&gt;虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧，用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每次方法调用时，一个新的栈帧创建并压栈到栈顶。当方法正常返回或抛出未捕获的异常时，栈帧就会出栈。&lt;/li&gt;
+&lt;li&gt;在编译程序代码时，栈帧中需要多大的局部变量表、多深的操作数栈都已经完全确定了。&lt;/li&gt;
+&lt;li&gt;如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果虚拟机在动态扩展栈时无法申请到足够的内存空间，则抛出OutOfMemoryError异常。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;本地方法栈&quot;&gt;&lt;a href=&quot;#本地方法栈&quot; class=&quot;headerlink&quot; title=&quot;本地方法栈&quot;&gt;&lt;/a&gt;本地方法栈&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;与虚拟机栈作用类似，区别在于虚拟机栈为虚拟机执行Java方法服务，而本地方法栈则为虚拟机使用到的Native方法服务。&lt;/li&gt;
+&lt;li&gt;本地方法栈区域也会抛出StackOverflowError与OutOfMemoryError异常。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;Java堆&quot;&gt;&lt;a href=&quot;#Java堆&quot; class=&quot;headerlink&quot; title=&quot;Java堆&quot;&gt;&lt;/a&gt;Java堆&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Java堆是Java虚拟机所管理的内存中最大的一块，它是所有线程共享的一块内存区域。几乎所有的实例和数组都在这里分配内存，同时也是垃圾收集器管理的主要区域。&lt;/li&gt;
+&lt;li&gt;Java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可。&lt;/li&gt;
+&lt;li&gt;如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;方法区&quot;&gt;&lt;a href=&quot;#方法区&quot; class=&quot;headerlink&quot; title=&quot;方法区&quot;&gt;&lt;/a&gt;方法区&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;为各个线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。&lt;/li&gt;
+&lt;li&gt;不需要连续的内存，可以选择固定大小或可扩展，还可选择不实现垃圾回收。该区域的内存回收目标主要是针对常量池的回收和对类型的卸载。&lt;/li&gt;
+&lt;li&gt;常量池用于存放编译期间生成的各种字面量和符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。&lt;/li&gt;
+&lt;li&gt;当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;直接内存&quot;&gt;&lt;a href=&quot;#直接内存&quot; class=&quot;headerlink&quot; title=&quot;直接内存&quot;&gt;&lt;/a&gt;直接内存&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;直接从操作系统中分配内存，不受Java堆大小的限制，但是会受到本机中总内存的大小及处理器寻址空间的限制，因此它也可能导致OutOfMemoryError异常。&lt;/li&gt;
+&lt;li&gt;NIO是一种基于通道与缓冲区的新I/O方式，可以使用Native函数库直接分配堆外内存，然后通过一个存储在Java堆中的DirectByteBuffer对象作为这块内存的引用进行操作。这样能在一些场景中显著提高性能，因为避免了在Java堆和Native堆中来回复制数据。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;内存泄露&quot;&gt;&lt;a href=&quot;#内存泄露&quot; class=&quot;headerlink&quot; title=&quot;内存泄露&quot;&gt;&lt;/a&gt;内存泄露&lt;/h2&gt;&lt;h3 id=&quot;内存泄露和内存溢出的区别&quot;&gt;&lt;a href=&quot;#内存泄露和内存溢出的区别&quot; class=&quot;headerlink&quot; title=&quot;内存泄露和内存溢出的区别&quot;&gt;&lt;/a&gt;内存泄露和内存溢出的区别&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;内存泄露是指无用对象持续占有内存或无用对象的内存得不到及时释放，从而造成的内存空间的浪费。&lt;/li&gt;
+&lt;li&gt;内存溢出是指程序所需要的内存超出了系统所能分配的内存（包括动态扩展）的上限。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;内存泄露原因&quot;&gt;&lt;a href=&quot;#内存泄露原因&quot; class=&quot;headerlink&quot; title=&quot;内存泄露原因&quot;&gt;&lt;/a&gt;内存泄露原因&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;静态集合类引起的内存泄露&lt;/li&gt;
+&lt;li&gt;注册的监听器不再使用以后未关闭&lt;/li&gt;
+&lt;li&gt;数据库连接、网络连接、IO连接等没有关闭&lt;/li&gt;
+&lt;li&gt;内部类和外部类等的引用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;类加载机制&quot;&gt;&lt;a href=&quot;#类加载机制&quot; class=&quot;headerlink&quot; title=&quot;类加载机制&quot;&gt;&lt;/a&gt;类加载机制&lt;/h2&gt;&lt;h3 id=&quot;类加载过程&quot;&gt;&lt;a href=&quot;#类加载过程&quot; class=&quot;headerlink&quot; title=&quot;类加载过程&quot;&gt;&lt;/a&gt;类加载过程&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;类加载过程包括加载、验证、准备、解析、初始化五个阶段。&lt;/li&gt;
+&lt;li&gt;加载阶段通过一个类的全限定名来获取定义此类的二进制字节流；将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构；在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口。&lt;/li&gt;
+&lt;li&gt;验证是为了确保Class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。&lt;/li&gt;
+&lt;li&gt;准备阶段是为类变量在方法区中分配内存并设置类变量初始值的阶段。&lt;/li&gt;
+&lt;li&gt;解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。&lt;/li&gt;
+&lt;li&gt;初始化：&lt;ul&gt;
+&lt;li&gt;遇到new、getstatic、putstatic或invokestatic这4条字节码指令时，需先初始化该类。&lt;/li&gt;
+&lt;li&gt;如果类存在直接的父类并且这个类还未被初始化，则先初始化父类。&lt;/li&gt;
+&lt;li&gt;虚拟机启动时，会先初始化用户指定要执行的一个主类。&lt;/li&gt;
+&lt;li&gt;使用java.lang.reflect包的方法对类进行反射调用的时候，需先初始化该类。&lt;/li&gt;
+&lt;li&gt;如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄所对应的类没有进行过初始化，则需先初始化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;类加载器&quot;&gt;&lt;a href=&quot;#类加载器&quot; class=&quot;headerlink&quot; title=&quot;类加载器&quot;&gt;&lt;/a&gt;类加载器&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;启动类加载器（Bootstrap）：负责加载存放在&lt;java_home&gt;\lib目录中，或者被-Xbootclasspath参数所指定的路径中，并且能被虚拟机识别的类库（如rt.jar，所有的java.*开头的类）。&lt;/java_home&gt;&lt;/li&gt;
+&lt;li&gt;扩展类加载器（Extension）：负责加载&lt;java_home&gt;\lib\ext目录中，或者由java.ext.dirs系统变量指定的路径中所有类库（如javax.*开头的类）。&lt;/java_home&gt;&lt;/li&gt;
+&lt;li&gt;应用程序类加载器（系统类加载器）（Application）：负责加载用户类路径（ClassPath）所指定的类。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;双亲委派模型&quot;&gt;&lt;a href=&quot;#双亲委派模型&quot; class=&quot;headerlink&quot; title=&quot;双亲委派模型&quot;&gt;&lt;/a&gt;双亲委派模型&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;双亲委派模型从顶层到底层依次是启动类加载器、扩展类加载器、应用程序类加载器、自定义类加载器。&lt;/li&gt;
+&lt;li&gt;除了顶层的启动加载器外，其余的类加载器都应当有自己的父类加载器。这里类加载器之间的父子关系一般不会以继承的关系来实现，而是都使用组合关系来复用父加载器的代码。&lt;/li&gt;
+&lt;li&gt;工作过程：如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求（它的搜索范围中没有找到所需的类）时，子加载器才会尝试自己去加载。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;垃圾收集机制&quot;&gt;&lt;a href=&quot;#垃圾收集机制&quot; class=&quot;headerlink&quot; title=&quot;垃圾收集机制&quot;&gt;&lt;/a&gt;垃圾收集机制&lt;/h2&gt;&lt;h3 id=&quot;垃圾对象的判定&quot;&gt;&lt;a href=&quot;#垃圾对象的判定&quot; class=&quot;headerlink&quot; title=&quot;垃圾对象的判定&quot;&gt;&lt;/a&gt;垃圾对象的判定&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;引用计数算法&lt;/strong&gt;：给对象添加一个引用计数器，每当有一个地方引用它时，计数器值就加1，当引用失效时，计数器值减1，任何时刻计数器都为0的对象就是不可能再被使用的。缺点是很难解决对象之间的相互循环引用问题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;根搜索算法&lt;/strong&gt;：通过一系列名为”GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连时，就证明此对象是不可用的。可作为GC Roots的对象包括：&lt;ul&gt;
+&lt;li&gt;虚拟机栈（栈帧中的本地变量表）中引用的对象。&lt;/li&gt;
+&lt;li&gt;方法区中各类静态属性引用的对象。&lt;/li&gt;
+&lt;li&gt;方法区中常量引用的对象。&lt;/li&gt;
+&lt;li&gt;本地方法栈中JNI（即Native方法）引用的对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;垃圾收集算法&quot;&gt;&lt;a href=&quot;#垃圾收集算法&quot; class=&quot;headerlink&quot; title=&quot;垃圾收集算法&quot;&gt;&lt;/a&gt;垃圾收集算法&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;标记-清除算法&lt;/strong&gt;：首先标记出所有需要回收的对象，在标记完成后统一回收所有被标记对象。不足在于：1.标记和清除两个过程的效率不高；2.标记清除之后会产生大量不连续的内存碎片。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;复制算法&lt;/strong&gt;：将可用内存按容量划分为大小相等的两块，每次只使用其中一块。当这一块的内存用完了，就将还存活着的对象复制到另一块上面，然后再把已使用过的内存空间一次清理掉。缺点在于浪费空间，且复制操作较多，效率降低。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;标记-整理算法&lt;/strong&gt;：标记出所有需要回收的对象，然后让所有存活的对象都向一端移动，最后直接清理掉端边界以外的内存。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分代收集算法&lt;/strong&gt;：把Java堆分为新生代和老年代。在新生代中，每次垃圾收集都发现有大批对象死去，只有少量存活，因此可选用复制算法，只需要付出少量存活对象的复制成本就可以完成收集。而老年代中因为对象存活率高、没有额外空间对它进行分配担保，就必须使用“标记-清除”或者“标记-整理”算法来进行回收。&lt;/li&gt;
+&lt;li&gt;注：对于新生代回收，一般将内存分为一块较大的Eden空间和两块较小的Survivor空间，每次使用Eden空间和其中一块Survivor。回收时将Eden和Survivor中还存活的对象一次性复制到另一块Survivor空间上，最后清理掉Eden和刚才用过的Survivor空间。Eden和Survivor大小比例为8:1。当Survivor空间不够时，需要依赖其他内存（老年代）进行分配担保。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;垃圾收集器&quot;&gt;&lt;a href=&quot;#垃圾收集器&quot; class=&quot;headerlink&quot; title=&quot;垃圾收集器&quot;&gt;&lt;/a&gt;垃圾收集器&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;CMS收集器：以获取最短回收停顿时间为目标的收集器，基于“标记-清除”算法实现。 &lt;/li&gt;
+&lt;li&gt;G1收集器：1.并行与并发；2.分代收集；3.空间整合；4.可预测的停顿。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;性能调优&quot;&gt;&lt;a href=&quot;#性能调优&quot; class=&quot;headerlink&quot; title=&quot;性能调优&quot;&gt;&lt;/a&gt;性能调优&lt;/h2&gt;&lt;h3 id=&quot;JVM参数&quot;&gt;&lt;a href=&quot;#JVM参数&quot; class=&quot;headerlink&quot; title=&quot;JVM参数&quot;&gt;&lt;/a&gt;JVM参数&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;-Xms                       初始堆大小&lt;/li&gt;
+&lt;li&gt;-Xmx                       最大堆大小&lt;/li&gt;
+&lt;li&gt;-Xss                       每个线程的堆栈大小&lt;/li&gt;
+&lt;li&gt;-Xmn                       新生代大小&lt;/li&gt;
+&lt;li&gt;-XX:PermSize               持久代内存大小&lt;/li&gt;
+&lt;li&gt;-XX:MaxPermSize            最大持久代内存大小&lt;/li&gt;
+&lt;li&gt;-XX:NewSize                新生代内存大小&lt;/li&gt;
+&lt;li&gt;-XX:MaxNewSize             最大新生代内存大小&lt;/li&gt;
+&lt;li&gt;-XX:ReservedCodeCacheSize  编译代码时的缓存空间大小&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;调优措施&quot;&gt;&lt;a href=&quot;#调优措施&quot; class=&quot;headerlink&quot; title=&quot;调优措施&quot;&gt;&lt;/a&gt;调优措施&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;-&lt;br&gt;-&lt;br&gt;-&lt;br&gt;-&lt;br&gt;-&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;相关参考&quot;&gt;&lt;a href=&quot;#相关参考&quot; class=&quot;headerlink&quot; title=&quot;相关参考&quot;&gt;&lt;/a&gt;相关参考&lt;/h2&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://wiki.jikexueyuan.com/project/java-vm/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;深入理解Java虚拟机&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wiki.jikexueyuan.com/project/java-interview-bible/platorm-memory.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java虚拟机与内存管理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;《深入理解Java虚拟机 - JVM高级特性与最佳实践》周志明 著&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;总结的有关java虚拟机的一些经典面试题，包括内存模型、类加载机制、垃圾回收机制等。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://zskyer.github.io/categories/Java/"/>
+    
+    
+      <category term="JVM" scheme="http://zskyer.github.io/tags/JVM/"/>
+    
+      <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo博客搭建</title>
