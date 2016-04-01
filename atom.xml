@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zskyer.github.io/"/>
-  <updated>2016-03-30T06:33:41.617Z</updated>
+  <updated>2016-04-01T03:10:36.548Z</updated>
   <id>http://zskyer.github.io/</id>
   
   <author>
@@ -16,11 +16,195 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Python简单爬虫实例</title>
+    <link href="http://zskyer.github.io/2016/03/31/crawler/"/>
+    <id>http://zskyer.github.io/2016/03/31/crawler/</id>
+    <published>2016-03-31T15:00:02.000Z</published>
+    <updated>2016-04-01T03:10:36.548Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="Crawler" scheme="http://zskyer.github.io/categories/Crawler/"/>
+    
+    
+      <category term="python" scheme="http://zskyer.github.io/tags/python/"/>
+    
+      <category term="requests" scheme="http://zskyer.github.io/tags/requests/"/>
+    
+      <category term="beautifulsoup" scheme="http://zskyer.github.io/tags/beautifulsoup/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试复习（Mysql）</title>
+    <link href="http://zskyer.github.io/2016/03/31/mysql/"/>
+    <id>http://zskyer.github.io/2016/03/31/mysql/</id>
+    <published>2016-03-31T14:58:07.000Z</published>
+    <updated>2016-04-01T03:09:11.007Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="Database" scheme="http://zskyer.github.io/categories/Database/"/>
+    
+    
+      <category term="mysql" scheme="http://zskyer.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试复习（Spring）</title>
+    <link href="http://zskyer.github.io/2016/03/31/spring/"/>
+    <id>http://zskyer.github.io/2016/03/31/spring/</id>
+    <published>2016-03-31T14:57:26.000Z</published>
+    <updated>2016-04-01T03:11:19.418Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="Java" scheme="http://zskyer.github.io/categories/Java/"/>
+    
+    
+      <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="spring" scheme="http://zskyer.github.io/tags/spring/"/>
+    
+      <category term="springmvc" scheme="http://zskyer.github.io/tags/springmvc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试复习（集合）</title>
+    <link href="http://zskyer.github.io/2016/03/31/collection/"/>
+    <id>http://zskyer.github.io/2016/03/31/collection/</id>
+    <published>2016-03-31T14:54:52.000Z</published>
+    <updated>2016-04-01T03:05:46.978Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="Java" scheme="http://zskyer.github.io/categories/Java/"/>
+    
+    
+      <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="集合" scheme="http://zskyer.github.io/tags/%E9%9B%86%E5%90%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试复习（并发与多线程）</title>
+    <link href="http://zskyer.github.io/2016/03/30/thread/"/>
+    <id>http://zskyer.github.io/2016/03/30/thread/</id>
+    <published>2016-03-30T07:54:45.000Z</published>
+    <updated>2016-03-31T11:47:57.089Z</updated>
+    
+    <content type="html">&lt;p&gt;简单总结的Java多线程开发与并发编程相关面试题。针对有些细节问题，后面有时间的话再写专题分析吧。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;实现多线程的两种方式&quot;&gt;&lt;a href=&quot;#实现多线程的两种方式&quot; class=&quot;headerlink&quot; title=&quot;实现多线程的两种方式&quot;&gt;&lt;/a&gt;实现多线程的两种方式&lt;/h2&gt;&lt;h3 id=&quot;继承Thread类&quot;&gt;&lt;a href=&quot;#继承Thread类&quot; class=&quot;headerlink&quot; title=&quot;继承Thread类&quot;&gt;&lt;/a&gt;继承Thread类&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MyThread&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Thread&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		System.out.println(Thread.currentThread().getName());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String[] args)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		MyThread thread = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; MyThread();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		thread.start();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;实现Runnable接口&quot;&gt;&lt;a href=&quot;#实现Runnable接口&quot; class=&quot;headerlink&quot; title=&quot;实现Runnable接口&quot;&gt;&lt;/a&gt;实现Runnable接口&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MyRunnable&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Runnable&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		System.out.println(Thread.currentThread().getName());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String[] args)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		MyRunnable mr = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; MyRunnable();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Thread thread = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Thread(mr);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		thread.start();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;两种方式比较&quot;&gt;&lt;a href=&quot;#两种方式比较&quot; class=&quot;headerlink&quot; title=&quot;两种方式比较&quot;&gt;&lt;/a&gt;两种方式比较&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Runnable方式可以避免Thread方式由于Java单继承特性而带来的局限性。&lt;/li&gt;
+&lt;li&gt;Runnable的代码可以被多个线程（Thread实例）共享，适合于多个线程处理同一资源的情况。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;线程常用方法&quot;&gt;&lt;a href=&quot;#线程常用方法&quot; class=&quot;headerlink&quot; title=&quot;线程常用方法&quot;&gt;&lt;/a&gt;线程常用方法&lt;/h2&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;sleep()&lt;/strong&gt;：是Thread的静态方法，使一个正在运行的线程处于睡眠状态，但是不会释放对象锁，会抛出InterruptedException异常。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;wait()&lt;/strong&gt;：使一个线程处于等待（阻塞）状态，并且释放所持有的对象的锁，需在同步的代码块中调用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;yield()&lt;/strong&gt;：停止当前线程，回到就绪状态，把执行机会让给相同或者更高优先级的线程。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;join()&lt;/strong&gt;：在当前线程中调用另一个线程的join()方法，则当前线程转入阻塞状态，直到另一个线程运行结束，当前线程再由阻塞转为就绪状态。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;notify()&lt;/strong&gt;：唤醒一个处于等待状态的线程，但并不能确切的唤醒某一个等待状态的线程，而是由JVM确定唤醒哪个线程，而且与优先级无关。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;notifyAll()&lt;/strong&gt;：唤醒所有处于等待状态的线程，但并不是给所有唤醒线程一个对象的锁，而是让它们竞争。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;线程同步&quot;&gt;&lt;a href=&quot;#线程同步&quot; class=&quot;headerlink&quot; title=&quot;线程同步&quot;&gt;&lt;/a&gt;线程同步&lt;/h2&gt;&lt;h3 id=&quot;volatile&quot;&gt;&lt;a href=&quot;#volatile&quot; class=&quot;headerlink&quot; title=&quot;volatile&quot;&gt;&lt;/a&gt;volatile&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;volatile修饰的成员变量在每次被线程访问时，都是从主存中进行读取。&lt;/li&gt;
+&lt;li&gt;在访问volatile变量时不会执行加锁操作，因此具有更高的效率。但是volatile变量只能确保可见性，不保证原子性，因此是线程不安全的。&lt;/li&gt;
+&lt;li&gt;必须同时满足下面两个条件，才可以使用volatile变量：&lt;ul&gt;
+&lt;li&gt;对变量的写操作不依赖于当前值。&lt;/li&gt;
+&lt;li&gt;该变量没有包含在具有其他变量的不变式中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;synchronized&quot;&gt;&lt;a href=&quot;#synchronized&quot; class=&quot;headerlink&quot; title=&quot;synchronized&quot;&gt;&lt;/a&gt;synchronized&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;synchronized关键字可以将对象或者方法标记为同步，以实现对对象和方法的互斥访问。&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; value)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.count += value;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; value)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;synchronized&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.count += value;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果同一个方法内同时有两个或更多线程，则每个线程都有自己的局部变量拷贝。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;类的每个实例都有自己的对象级别锁。&lt;/li&gt;
+&lt;li&gt;访问同一个类的不同实例对象中的同步代码块，不存在阻塞等待获取对象锁的问题。&lt;/li&gt;
+&lt;li&gt;当一个线程访问synchronized代码块时，另一个线程仍然可以访问该对象的非synchronized代码块。&lt;/li&gt;
+&lt;li&gt;一个线程访问synchronized代码块时，其他线程对object中所有其他synchronized代码块的访问都将被阻塞。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;死锁&quot;&gt;&lt;a href=&quot;#死锁&quot; class=&quot;headerlink&quot; title=&quot;死锁&quot;&gt;&lt;/a&gt;死锁&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;死锁是两个或多个线程&lt;/li&gt;
+&lt;li&gt;死锁产生的四个必要条件：&lt;ul&gt;
+&lt;li&gt;互斥条件：一个资源每次只能被一个进程使用。&lt;/li&gt;
+&lt;li&gt;请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放。&lt;/li&gt;
+&lt;li&gt;不剥夺条件：进程已获得的资源，在未使用完之前，不能强行剥夺。&lt;/li&gt;
+&lt;li&gt;循环等待条件：若干个进程之间形成一条头尾相接的循环等待资源关系。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;解决死锁：&lt;ul&gt;
+&lt;li&gt;预防死锁：资源一次性分配、可剥夺资源、资源有序分配法&lt;/li&gt;
+&lt;li&gt;避免死锁：银行家算法&lt;/li&gt;
+&lt;li&gt;检测死锁：建立资源分配表和进程等待表&lt;/li&gt;
+&lt;li&gt;解除死锁：剥夺资源、撤销进程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.open-open.com/code/view/1426489433101&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一个简单的死锁实例&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;Lock&quot;&gt;&lt;a href=&quot;#Lock&quot; class=&quot;headerlink&quot; title=&quot;Lock&quot;&gt;&lt;/a&gt;Lock&lt;/h3&gt;&lt;h2 id=&quot;相关参考&quot;&gt;&lt;a href=&quot;#相关参考&quot; class=&quot;headerlink&quot; title=&quot;相关参考&quot;&gt;&lt;/a&gt;相关参考&lt;/h2&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://wiki.jikexueyuan.com/project/java-concurrent/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java并发性和多线程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wiki.jikexueyuan.com/project/java-concurrency/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java并发编程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wiki.jikexueyuan.com/project/java-interview-bible/multi-thread.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java面试宝典&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;简单总结的Java多线程开发与并发编程相关面试题。针对有些细节问题，后面有时间的话再写专题分析吧。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://zskyer.github.io/categories/Java/"/>
+    
+    
+      <category term="并发" scheme="http://zskyer.github.io/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="多线程" scheme="http://zskyer.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+      <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java面试复习（JVM）</title>
     <link href="http://zskyer.github.io/2016/03/28/jvm/"/>
     <id>http://zskyer.github.io/2016/03/28/jvm/</id>
     <published>2016-03-28T14:39:47.000Z</published>
-    <updated>2016-03-30T06:33:41.617Z</updated>
+    <updated>2016-04-01T03:11:35.133Z</updated>
     
     <content type="html">&lt;p&gt;总结的有关java虚拟机的一些经典面试题，包括内存模型、类加载机制、垃圾回收机制等。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -142,14 +326,14 @@
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;性能调优&quot;&gt;&lt;a href=&quot;#性能调优&quot; class=&quot;headerlink&quot; title=&quot;性能调优&quot;&gt;&lt;/a&gt;性能调优&lt;/h2&gt;&lt;h3 id=&quot;JVM参数&quot;&gt;&lt;a href=&quot;#JVM参数&quot; class=&quot;headerlink&quot; title=&quot;JVM参数&quot;&gt;&lt;/a&gt;JVM参数&lt;/h3&gt;&lt;blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;-Xms                       初始堆大小&lt;/li&gt;
-&lt;li&gt;-Xmx                       最大堆大小&lt;/li&gt;
-&lt;li&gt;-Xss                       每个线程的堆栈大小&lt;/li&gt;
-&lt;li&gt;-Xmn                       新生代大小&lt;/li&gt;
-&lt;li&gt;-XX:PermSize               持久代内存大小&lt;/li&gt;
-&lt;li&gt;-XX:MaxPermSize            最大持久代内存大小&lt;/li&gt;
-&lt;li&gt;-XX:NewSize                新生代内存大小&lt;/li&gt;
-&lt;li&gt;-XX:MaxNewSize             最大新生代内存大小&lt;/li&gt;
+&lt;li&gt;-Xms                初始堆大小&lt;/li&gt;
+&lt;li&gt;-Xmx                最大堆大小&lt;/li&gt;
+&lt;li&gt;-Xss                每个线程的堆栈大小&lt;/li&gt;
+&lt;li&gt;-Xmn                新生代大小&lt;/li&gt;
+&lt;li&gt;-XX:PermSize        持久代内存大小&lt;/li&gt;
+&lt;li&gt;-XX:MaxPermSize     最大持久代内存大小&lt;/li&gt;
+&lt;li&gt;-XX:NewSize         新生代内存大小&lt;/li&gt;
+&lt;li&gt;-XX:MaxNewSize      最大新生代内存大小&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;调优措施&quot;&gt;&lt;a href=&quot;#调优措施&quot; class=&quot;headerlink&quot; title=&quot;调优措施&quot;&gt;&lt;/a&gt;调优措施&lt;/h3&gt;&lt;blockquote&gt;
@@ -160,6 +344,7 @@
 &lt;li&gt;&lt;a href=&quot;http://wiki.jikexueyuan.com/project/java-vm/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;深入理解Java虚拟机&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://wiki.jikexueyuan.com/project/java-interview-bible/platorm-memory.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java虚拟机与内存管理&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;《深入理解Java虚拟机 - JVM高级特性与最佳实践》周志明 著&lt;/li&gt;
+&lt;li&gt;《深入分析Java Web技术内幕》 许令波 著&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;</content>
     
@@ -172,9 +357,9 @@
       <category term="Java" scheme="http://zskyer.github.io/categories/Java/"/>
     
     
-      <category term="JVM" scheme="http://zskyer.github.io/tags/JVM/"/>
-    
       <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="jvm" scheme="http://zskyer.github.io/tags/jvm/"/>
     
   </entry>
   
@@ -183,7 +368,7 @@
     <link href="http://zskyer.github.io/2016/03/21/hexo/"/>
     <id>http://zskyer.github.io/2016/03/21/hexo/</id>
     <published>2016-03-21T12:27:59.000Z</published>
-    <updated>2016-03-30T06:44:26.383Z</updated>
+    <updated>2016-03-30T06:47:56.913Z</updated>
     
     <content type="html">&lt;p&gt;关于Hexo是什么，以及为什么要用Hexo来搭建静态博客在此不多说，重点记录搭建博客的主要过程，后续会把博客的一些更新也记录在此。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
