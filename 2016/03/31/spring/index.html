@@ -5,16 +5,21 @@
   
   <title>Java面试复习（Spring） | 小天碎碎念</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <meta name="description" content="个人博客">
+  <meta name="description" content="总结spring及其相关组件的基本原理和用法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java面试复习（Spring）">
 <meta property="og:url" content="http://zskyer.github.io/2016/03/31/spring/index.html">
 <meta property="og:site_name" content="小天碎碎念">
-<meta property="og:description" content="个人博客">
-<meta property="og:updated_time" content="2016-04-01T03:11:19.418Z">
+<meta property="og:description" content="总结spring及其相关组件的基本原理和用法。">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/spring.png">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/spring.jpg">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/mvc.png">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/springmvc.png">
+<meta property="og:updated_time" content="2016-04-04T10:28:32.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试复习（Spring）">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:description" content="总结spring及其相关组件的基本原理和用法。">
+<meta name="twitter:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/spring.png">
   
     <link rel="alternative" href="/atom.xml" title="小天碎碎念" type="application/atom+xml">
   
@@ -57,6 +62,8 @@
       <script>
           yiliaConfig.rootUrl = "/";
       </script>
+  
+
   
 
   
@@ -104,10 +111,10 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
                     </ul>
@@ -155,7 +162,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Github/" style="font-size: 10px">Github</a> <a href="/tags/Hexo/" style="font-size: 10px">Hexo</a> <a href="/tags/beautifulsoup/" style="font-size: 10px">beautifulsoup</a> <a href="/tags/jvm/" style="font-size: 10px">jvm</a> <a href="/tags/mysql/" style="font-size: 10px">mysql</a> <a href="/tags/python/" style="font-size: 10px">python</a> <a href="/tags/requests/" style="font-size: 10px">requests</a> <a href="/tags/spring/" style="font-size: 10px">spring</a> <a href="/tags/springmvc/" style="font-size: 10px">springmvc</a> <a href="/tags/多线程/" style="font-size: 10px">多线程</a> <a href="/tags/并发/" style="font-size: 10px">并发</a> <a href="/tags/集合/" style="font-size: 10px">集合</a> <a href="/tags/面试/" style="font-size: 20px">面试</a>
+                        <a href="/tags/Github/" style="font-size: 10px">Github</a> <a href="/tags/Hexo/" style="font-size: 10px">Hexo</a> <a href="/tags/IO/" style="font-size: 10px">IO</a> <a href="/tags/beautifulsoup/" style="font-size: 10px">beautifulsoup</a> <a href="/tags/jvm/" style="font-size: 10px">jvm</a> <a href="/tags/mysql/" style="font-size: 10px">mysql</a> <a href="/tags/python/" style="font-size: 10px">python</a> <a href="/tags/requests/" style="font-size: 10px">requests</a> <a href="/tags/servlet/" style="font-size: 10px">servlet</a> <a href="/tags/spring/" style="font-size: 10px">spring</a> <a href="/tags/springmvc/" style="font-size: 10px">springmvc</a> <a href="/tags/多线程/" style="font-size: 10px">多线程</a> <a href="/tags/并发/" style="font-size: 10px">并发</a> <a href="/tags/推荐系统/" style="font-size: 10px">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px">算法</a> <a href="/tags/集合/" style="font-size: 10px">集合</a> <a href="/tags/面试/" style="font-size: 20px">面试</a>
                     </div>
                 </section>
                 
@@ -272,25 +279,95 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <p>总结spring及其相关组件的基本原理和用法。</p>
+<a id="more"></a>
+<h2 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h2><p><img src="http://7xsdr2.com1.z0.glb.clouddn.com/spring.png" alt="spring结构图"><img src="http://7xsdr2.com1.z0.glb.clouddn.com/spring.jpg" alt="spring组件图"></p>
+<h2 id="IOC-amp-amp-DI"><a href="#IOC-amp-amp-DI" class="headerlink" title="IOC &amp;&amp; DI"></a>IOC &amp;&amp; DI</h2><blockquote>
+<p>让调用类对某一接口实现类的依赖关系由第三方注入，以移除调用类对某一接口实现类的依赖。当编写一个复杂的Java应用程序时，应用程序类应该尽可能独立于其他Java类，来增加这些类的可重用性。</p>
+</blockquote>
+<h3 id="注入类型"><a href="#注入类型" class="headerlink" title="注入类型"></a>注入类型</h3><blockquote>
+<p>构造函数注入：通过调用类的构造函数，将接口实现类通过构造函数变量传入。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SpellCheck.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpellChecker</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SpellChecker</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"SpellChecker constructor."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkSpelling</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Check spelling."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TextEditor.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextEditor</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> SpellChecker spellChecker;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TextEditor</span><span class="params">(SpellChecker spellChecker)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"TextEditor constructor."</span>);</span><br><span class="line">        <span class="keyword">this</span>.spellChecker = spellChecker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">spellCheck</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        spellChecker.checkSpelling();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Main.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"beans.xml"</span>);</span><br><span class="line">        TextEditor te = (TextEditor) ctx.getBean(<span class="string">"textEditor"</span>);</span><br><span class="line">        te.spellCheck();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- beans.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"textEditor"</span> <span class="attr">class</span>=<span class="string">"me.zxsky.TextEditor"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"spellChecker"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"spellChecker"</span> <span class="attr">class</span>=<span class="string">"me.zxsky.SpellChecker"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>属性注入：通过Setter方法完成调用类所需依赖的注入。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TextEditor.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextEditor</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> SpellChecker spellChecker;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSpellChecker</span><span class="params">(SpellChecker spellChecker)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.spellChecker = spellChecker;</span><br><span class="line">        System.out.println(<span class="string">"Set spellChecker"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">spellCheck</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        spellChecker.checkSpelling();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- beans.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"textEditor"</span> <span class="attr">class</span>=<span class="string">"me.zxsky.TextEditor"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"spellChecker"</span> <span class="attr">ref</span>=<span class="string">"spellChecker"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"spellChecker"</span> <span class="attr">class</span>=<span class="string">"me.zxsky.SpellChecker"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h3><blockquote>
+<ul>
+<li>ClassPathXmlApplicationContext：从类路径ClassPath中寻找指定的XML配置文件。</li>
+<li>FileSystemXmlApplicationContext：从指定的文件系统路径中寻找指定的XML配置文件。</li>
+<li>WebXmlApplicationContext：从Web应用中的寻找指定的XML配置文件。</li>
+</ul>
+</blockquote>
+<h3 id="反射详解"><a href="#反射详解" class="headerlink" title="反射详解"></a>反射详解</h3><blockquote>
+<p>获取一个类的Class对象</p>
+<ul>
+<li>Class c1 = Person.class;</li>
+<li>Class c2 = new Person().getClass();</li>
+<li>Class c3 = Class.forName(“me.zxsky.reflect.Person”)</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> me.zxsky.reflect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestReflect</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Class&lt;?&gt; clazz = Class.forName(<span class="string">"me.zxsky.reflect.Person"</span>);</span><br><span class="line">        <span class="comment">// 反射类的构造函数</span></span><br><span class="line">        Constructor&lt;?&gt; cons = clazz.getConstructor(String.class, <span class="keyword">int</span>.class);</span><br><span class="line">        Person person1 = (Person) cons.newInstance(<span class="string">"Jack"</span>, <span class="number">22</span>);</span><br><span class="line">        System.out.println(person1.toString());</span><br><span class="line">        <span class="comment">// 反射类的方法</span></span><br><span class="line">        Person person2 = (Person) clazz.newInstance();</span><br><span class="line">        Method setName = clazz.getMethod(<span class="string">"setName"</span>, String.class);</span><br><span class="line">        Method setAge = clazz.getMethod(<span class="string">"setAge"</span>, <span class="keyword">int</span>.class);</span><br><span class="line">        setName.invoke(person2, <span class="string">"Lisa"</span>);</span><br><span class="line">        setAge.invoke(person2, <span class="number">20</span>);</span><br><span class="line">        System.out.println(person2.toString());</span><br><span class="line">        <span class="comment">// 反射类的属性</span></span><br><span class="line">        Field field = clazz.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">        field.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        Class&lt;?&gt; type = field.getType();</span><br><span class="line">        <span class="keyword">if</span> (type.equals(String.class)) &#123;</span><br><span class="line">            field.set(person1, <span class="string">"Timor"</span>);</span><br><span class="line">            String name = (String) field.get(person1);</span><br><span class="line">            System.out.println(field.getName() + <span class="string">": "</span> + name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><blockquote>
+<ul>
+<li>基本概念：面向切面编程。它是一种思想，可在不改变程序源码的情况下为程序添加额外的功能。</li>
+<li>主要目的：允许通过分离应用的业务逻辑与系统级服务进行内聚性的开发。应用对象只实现业务逻辑即可，并不负责它的系统级关注点。</li>
+<li>应用场景：日志记录、事务管理、安全验证、性能监控。</li>
+</ul>
+</blockquote>
+<h3 id="动态代理模式"><a href="#动态代理模式" class="headerlink" title="动态代理模式"></a>动态代理模式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Student接口类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IStudent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Student实现类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentImpl</span> <span class="keyword">implements</span> <span class="title">IStudent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello AOP."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代理工厂类</span></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyFactory</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> Object target;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getInstance</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.target = o;</span><br><span class="line">        <span class="keyword">return</span> Proxy.newProxyInstance(o.getClass().getClassLoader(), </span><br><span class="line">                o.getClass().getInterfaces(), <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> </span><br><span class="line">            <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(method.getName() + <span class="string">"方法开始执行."</span>);</span><br><span class="line">        Object object = method.invoke(target, args);</span><br><span class="line">        System.out.println(<span class="string">"方法结束."</span>);</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ProxyFactory factory = <span class="keyword">new</span> ProxyFactory();</span><br><span class="line">        IStudent stu = (IStudent) factory.getInstance(<span class="keyword">new</span> StudentImpl());</span><br><span class="line">        stu.print();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h2><h3 id="MVC模型介绍"><a href="#MVC模型介绍" class="headerlink" title="MVC模型介绍"></a>MVC模型介绍</h3><p><img src="http://7xsdr2.com1.z0.glb.clouddn.com/mvc.png" alt="MVC结构图"></p>
+<blockquote>
+<ul>
+<li>Model（模型）是应用程序中用于处理应用程序数据逻辑的部分，通常模型对象负责在数据库中存取数据。</li>
+<li>View（视图）是应用程序中处理数据显示的部分，通常视图是依据模型数据创建的。</li>
+<li>Controller（控制器）是应用程序中处理用户交互的部分，通常控制器负责从视图读取数据，控制用户输入，并向模型发送数据。</li>
+</ul>
+</blockquote>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p><img src="http://7xsdr2.com1.z0.glb.clouddn.com/springmvc.png" alt="SpringMVC结构图"></p>
+<blockquote>
+<ol>
+<li>客户端发送一个HTTP请求后，请求被DispatcherServlet捕获；</li>
+<li>DispatcherServlet对请求URL进行解析，通过查询HandlerMapping找到请求对应的处理器Handler；</li>
+<li>DispatcherServlet将请求分配给对应的Handler，处理器根据请求的信息执行相应的业务逻辑（调用service方法）；</li>
+<li>处理器完成业务逻辑的处理后将返回一个ModelAndView给DispatcherServlet，ModelAndView包含了视图逻辑名和渲染视图时需要用到的模型数据对象；</li>
+<li>由于ModelAndView中包含的是视图逻辑名，DispatcherServlet必须知道这个逻辑名对应的真实视图对象，这项视图解析的工作通过调用ViewResolver来完成；</li>
+<li>当得到真实的视图对象后，DispatcherServlet将请求分派给这个View对象，由其完成Model数据的渲染工作；</li>
+<li>将渲染结果返回给客户端。</li>
+</ol>
+</blockquote>
+<h2 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h2><blockquote>
+<ul>
+<li><a href="http://wiki.jikexueyuan.com/project/spring/" target="_blank" rel="external">Spring教程</a></li>
+<li><a href="http://wiki.jikexueyuan.com/project/spring-ioc/" target="_blank" rel="external">Spring-IOC容器</a></li>
+</ul>
+</blockquote>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/03/31/spring/">Java面试复习（Spring）</a></p>
-        <p><span>Author:</span><a href="/" title="Back to Homepage">AllSKY</a></p>
-        <p><span>Created:</span>2016-03-31, 22:57:26</p>
-        <p><span>Updated:</span>2016-04-01, 11:11:19</p>
+        <p><span>本文标题:</span><a href="/2016/03/31/spring/">Java面试复习（Spring）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">AllSKY</a></p>
+        <p><span>发布时间:</span>2016-03-31, 22:57:26</p>
+        <p><span>最后更新:</span>2016-04-04, 18:28:32</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/03/31/spring/" title="Java面试复习（Spring）">http://zskyer.github.io/2016/03/31/spring/</a>
-            <span class="copy-path" data-clipboard-text="From http://zskyer.github.io/2016/03/31/spring/　　By AllSKY" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/03/31/spring/" title="Java面试复习（Spring）">http://zskyer.github.io/2016/03/31/spring/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zskyer.github.io/2016/03/31/spring/　　作者: AllSKY" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
     </div>
 
@@ -300,7 +377,7 @@
         
             <div id="article-nav-newer" class="article-nav-title">
                 <a href="/2016/03/31/mysql/">
-                    Java面试复习（Mysql）
+                    Java面试复习（MySQL）
                 </a>
             </div>
         
@@ -316,8 +393,8 @@
 </article>
 
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#体系结构"><span class="toc-number">1.</span> <span class="toc-text">体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC-amp-amp-DI"><span class="toc-number">2.</span> <span class="toc-text">IOC && DI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注入类型"><span class="toc-number">2.1.</span> <span class="toc-text">注入类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ApplicationContext"><span class="toc-number">2.2.</span> <span class="toc-text">ApplicationContext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反射详解"><span class="toc-number">2.3.</span> <span class="toc-text">反射详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP"><span class="toc-number">3.</span> <span class="toc-text">AOP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#动态代理模式"><span class="toc-number">3.1.</span> <span class="toc-text">动态代理模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC"><span class="toc-number">4.</span> <span class="toc-text">SpringMVC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MVC模型介绍"><span class="toc-number">4.1.</span> <span class="toc-text">MVC模型介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工作流程"><span class="toc-number">4.2.</span> <span class="toc-text">工作流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关参考"><span class="toc-number">5.</span> <span class="toc-text">相关参考</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -328,10 +405,10 @@
     }
 </style>
 
-<input type="button" id="tocButton" value="Hide" title="Show or Hide Table of Contents">
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
 <script>
-    var valueHide = "Hide";
-    var valueShow = "Show";
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
 
     if ($(".left-col").is(":hidden")) {
         $("#tocButton").attr("value", valueShow);
@@ -374,19 +451,25 @@
     </script>
 
 
+
     <div class="share">
-    <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
-    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-    </div>
-    <script>
-        window._bd_share_config={
-            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-    </script>
+    
+        <div class="bdsharebuttonbox">
+            <li id="bds_twi"><a href="#" class="bds_twi" data-cmd="twi" title="分享到推特"></a></li>
+            <li id="bds_tsina"><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></li>
+            <li id="bds_sqq"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a></li>
+            <li id="bds_copy"><a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a></li>
+            <li id="bds_mail"><a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a></li>
+            <li id="bds_weixin"><a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a></li>
+            <li id="bds_more"><a href="#" class="bds_more" data-cmd="more"></a></li>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Java面试复习（Spring）　| 小天碎碎念　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
 </div>
 
 
@@ -415,21 +498,21 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/03/31/mysql/" title="Pre: Java面试复习（Mysql）">
+            <a href="/2016/03/31/mysql/" title="上一篇: Java面试复习（MySQL）">
                 <i class="fa fa-angle-left"></i>
             </a>
         
 
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/03/31/collection/" title="Next: Java面试复习（集合）">
+            <a href="/2016/03/31/collection/" title="下一篇: Java面试复习（集合）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/crawler/">Python简单爬虫实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/mysql/">Java面试复习（Mysql）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/spring/">Java面试复习（Spring）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/collection/">Java面试复习（集合）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/thread/">Java面试复习（并发与多线程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/jvm/">Java面试复习（JVM）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/21/hexo/">Hexo博客搭建</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/nio/">Java面试复习（I/O）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/recommendation/">推荐算法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/servlet/">Java面试复习（Servlet）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/crawler/">Python简单爬虫实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/mysql/">Java面试复习（MySQL）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/spring/">Java面试复习（Spring）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/collection/">Java面试复习（集合）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/thread/">Java面试复习（并发与多线程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/jvm/">Java面试复习（JVM）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/21/hexo/">Hexo博客搭建</a></li></ul>
 
 
     <script>
@@ -442,14 +525,14 @@
                 &copy; 2016 AllSKY
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style="display:none">
-                        <span id="site-visit">Site Visitors: 
+                        <span id="site-visit">本站到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -459,7 +542,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style="display:none">
-                        <span id="page-visit">Page Hits: 
+                        <span id="page-visit">本页阅读量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -508,9 +591,9 @@ MathJax.Hub.Queue(function() {
 </script>
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 
     <script src="//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js"></script>

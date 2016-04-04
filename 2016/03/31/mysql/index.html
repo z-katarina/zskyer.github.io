@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Java面试复习（Mysql） | 小天碎碎念</title>
+  <title>Java面试复习（MySQL） | 小天碎碎念</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <meta name="description" content="个人博客">
+  <meta name="description" content="简单总结mysql的常见操作，重点分析mysql的索引及查询优化。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java面试复习（Mysql）">
+<meta property="og:title" content="Java面试复习（MySQL）">
 <meta property="og:url" content="http://zskyer.github.io/2016/03/31/mysql/index.html">
 <meta property="og:site_name" content="小天碎碎念">
-<meta property="og:description" content="个人博客">
-<meta property="og:updated_time" content="2016-04-01T03:09:11.007Z">
+<meta property="og:description" content="简单总结mysql的常见操作，重点分析mysql的索引及查询优化。">
+<meta property="og:updated_time" content="2016-04-04T13:31:31.689Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java面试复习（Mysql）">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="Java面试复习（MySQL）">
+<meta name="twitter:description" content="简单总结mysql的常见操作，重点分析mysql的索引及查询优化。">
   
     <link rel="alternative" href="/atom.xml" title="小天碎碎念" type="application/atom+xml">
   
@@ -57,6 +57,8 @@
       <script>
           yiliaConfig.rootUrl = "/";
       </script>
+  
+
   
 
   
@@ -104,10 +106,10 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
                     </ul>
@@ -155,7 +157,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Github/" style="font-size: 10px">Github</a> <a href="/tags/Hexo/" style="font-size: 10px">Hexo</a> <a href="/tags/beautifulsoup/" style="font-size: 10px">beautifulsoup</a> <a href="/tags/jvm/" style="font-size: 10px">jvm</a> <a href="/tags/mysql/" style="font-size: 10px">mysql</a> <a href="/tags/python/" style="font-size: 10px">python</a> <a href="/tags/requests/" style="font-size: 10px">requests</a> <a href="/tags/spring/" style="font-size: 10px">spring</a> <a href="/tags/springmvc/" style="font-size: 10px">springmvc</a> <a href="/tags/多线程/" style="font-size: 10px">多线程</a> <a href="/tags/并发/" style="font-size: 10px">并发</a> <a href="/tags/集合/" style="font-size: 10px">集合</a> <a href="/tags/面试/" style="font-size: 20px">面试</a>
+                        <a href="/tags/Github/" style="font-size: 10px">Github</a> <a href="/tags/Hexo/" style="font-size: 10px">Hexo</a> <a href="/tags/IO/" style="font-size: 10px">IO</a> <a href="/tags/beautifulsoup/" style="font-size: 10px">beautifulsoup</a> <a href="/tags/jvm/" style="font-size: 10px">jvm</a> <a href="/tags/mysql/" style="font-size: 10px">mysql</a> <a href="/tags/python/" style="font-size: 10px">python</a> <a href="/tags/requests/" style="font-size: 10px">requests</a> <a href="/tags/servlet/" style="font-size: 10px">servlet</a> <a href="/tags/spring/" style="font-size: 10px">spring</a> <a href="/tags/springmvc/" style="font-size: 10px">springmvc</a> <a href="/tags/多线程/" style="font-size: 10px">多线程</a> <a href="/tags/并发/" style="font-size: 10px">并发</a> <a href="/tags/推荐系统/" style="font-size: 10px">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px">算法</a> <a href="/tags/集合/" style="font-size: 10px">集合</a> <a href="/tags/面试/" style="font-size: 20px">面试</a>
                     </div>
                 </section>
                 
@@ -254,7 +256,7 @@
     
       <header class="article-header">
         <h1 class="article-title" itemprop="name">
-      Java面试复习（Mysql）
+      Java面试复习（MySQL）
     </h1>
       </header>
       
@@ -272,25 +274,58 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <p>简单总结mysql的常见操作，重点分析mysql的索引及查询优化。</p>
+<a id="more"></a>
+<h2 id="常用SQL查询语句"><a href="#常用SQL查询语句" class="headerlink" title="常用SQL查询语句"></a>常用SQL查询语句</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 打印出成绩最高的学生的信息</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> students <span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span> <span class="keyword">limit</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 打印出成绩高于90的学生的信息</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> students <span class="keyword">where</span> score &gt; <span class="number">90</span> <span class="keyword">order</span> <span class="keyword">by</span> score;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 打印出名字为'Dave'的学生的信息</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, <span class="keyword">name</span>, score <span class="keyword">from</span> students <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'Dave'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 找出名字以"wang"开头的所有学生的信息</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> students <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'wang%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 把学生信息按分数分组，并打印出考该分数的人数大于10个的分数和对应的人数</span></span><br><span class="line"><span class="keyword">select</span> score, <span class="keyword">count</span>(*) <span class="keyword">as</span> nums <span class="keyword">from</span> students <span class="keyword">group</span> <span class="keyword">by</span> score <span class="keyword">having</span> <span class="keyword">count</span>(*) &gt; <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 子查询</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, <span class="keyword">name</span>, score <span class="keyword">from</span> students <span class="keyword">where</span> score <span class="keyword">in</span> (<span class="keyword">select</span> score <span class="keyword">from</span> tea);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 等值连接</span></span><br><span class="line"><span class="keyword">select</span> students.<span class="keyword">id</span>, students.<span class="keyword">name</span>, tea.<span class="keyword">name</span> <span class="keyword">from</span> students, tea <span class="keyword">where</span> students.<span class="keyword">id</span> = tea.<span class="keyword">id</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 左连接</span></span><br><span class="line"><span class="keyword">select</span> student.*, sc.* <span class="keyword">from</span> student <span class="keyword">left</span> <span class="keyword">join</span> sc <span class="keyword">on</span> student.<span class="keyword">id</span> = sc.<span class="keyword">sid</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 视图</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> info <span class="keyword">as</span> <span class="keyword">select</span> <span class="keyword">name</span>, socre <span class="keyword">where</span> score &gt; <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 索引</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> idx_students_name <span class="keyword">on</span> students(<span class="keyword">name</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 存储过程</span></span><br><span class="line">delimiter //</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> pro()</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(score) <span class="keyword">from</span> students;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">//</span><br><span class="line">delimiter;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 触发器</span></span><br><span class="line">delimiter |</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> trigger_name <span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> t <span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span> </span><br><span class="line"><span class="keyword">begin</span> <span class="keyword">set</span> @x = <span class="string">"hello trigger"</span>;</span><br><span class="line">    <span class="keyword">set</span> <span class="keyword">new</span>.s1 = <span class="number">55</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">|</span><br><span class="line">delimiter;</span><br></pre></td></tr></table></figure>
+<h2 id="MySQL索引"><a href="#MySQL索引" class="headerlink" title="MySQL索引"></a>MySQL索引</h2><h3 id="索引目的"><a href="#索引目的" class="headerlink" title="索引目的"></a>索引目的</h3><blockquote>
+<p>提高查询效率，避免全表搜索。</p>
+</blockquote>
+<h3 id="索引原理"><a href="#索引原理" class="headerlink" title="索引原理"></a>索引原理</h3><blockquote>
+<p>每个表有一个主键，MySQL会以主键的值构造一棵树，叶子节点存放着该主键对应的整行数据。所以一张表在数据结构上等价于一棵以主键排好序的树。对于我们自己建立的索引，一般是辅助索引，辅助索引树的叶子节点存放索引自身的值和索引对应主键的值。查询时先从索引中找到符合条件的数据项，再从叶子节点中取出主键值，最后去主键那棵树上取回整行数据。</p>
+</blockquote>
+<h3 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h3><h3 id="索引合理使用"><a href="#索引合理使用" class="headerlink" title="索引合理使用"></a>索引合理使用</h3><h3 id="索引建立原则"><a href="#索引建立原则" class="headerlink" title="索引建立原则"></a>索引建立原则</h3><blockquote>
+<ul>
+<li>使用区分度高的列作为索引。区分度公式是count(distinct col)/count(*)，表示字段不重复的比例，区分度越高，索引树的分叉也就越多，一次性找到的概率也就越高。</li>
+<li>尽量使用字段长度小的列作为索引。</li>
+<li>使用数据类型简单的列（int型，固定长度）。</li>
+<li>选用NOT NULL的列，含有空值的列会是的索引、索引的统计信息以及比较运算更加复杂，一般用0、一个特殊的值或者一个空串代替。</li>
+<li>尽量的扩展索引，不要新建索引。比如表中已经有a的索引，现在要加(a,b)的索引，那么只需要修改原来的索引即可。</li>
+</ul>
+</blockquote>
+<h3 id="索引使用原则"><a href="#索引使用原则" class="headerlink" title="索引使用原则"></a>索引使用原则</h3><blockquote>
+<ul>
+<li>最左前缀匹配原则，mysql会一直向右匹配直到遇到范围查询(&gt;, &lt;, between, like)就停止匹配。比如a = 1 and b = 2 and c &gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。</li>
+<li>= 和 in 可以乱序。比如a = 1 and b = 2 and c = 3 建立(a,b,c)索引可以任意顺序，mysql的查询优化器会帮你优化成索引可以识别的形式。</li>
+<li>查询数据库记录时，查询到的条目数尽量小，当通过索引获取到的数据库记录 &gt; 数据库总记录的1/3，SQL将有可能直接全表扫描，索引就失去了应有的作用。</li>
+<li>以下情况无法使用到索引：like通配符在最左、not in、!=、&lt;&gt;、对列做函数运算、隐式数据类型转换、OR子句。</li>
+<li>一次查询同一张表只能用一条索引。</li>
+</ul>
+</blockquote>
+<h2 id="数据库优化"><a href="#数据库优化" class="headerlink" title="数据库优化"></a>数据库优化</h2><h2 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h2><blockquote>
+<ul>
+<li><a href="http://blog.jobbole.com/98899/" target="_blank" rel="external">MySQL索引及查询优化</a></li>
+<li><a href="http://www.cnblogs.com/hustcat/archive/2009/10/28/1591648.html" target="_blank" rel="external">理解MySQL–索引与优化</a></li>
+<li><a href="http://blog.jobbole.com/86594/" target="_blank" rel="external">MySQL索引原理及慢查询优化</a></li>
+</ul>
+</blockquote>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/03/31/mysql/">Java面试复习（Mysql）</a></p>
-        <p><span>Author:</span><a href="/" title="Back to Homepage">AllSKY</a></p>
-        <p><span>Created:</span>2016-03-31, 22:58:07</p>
-        <p><span>Updated:</span>2016-04-01, 11:09:11</p>
+        <p><span>本文标题:</span><a href="/2016/03/31/mysql/">Java面试复习（MySQL）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">AllSKY</a></p>
+        <p><span>发布时间:</span>2016-03-31, 22:58:07</p>
+        <p><span>最后更新:</span>2016-04-04, 21:31:31</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/03/31/mysql/" title="Java面试复习（Mysql）">http://zskyer.github.io/2016/03/31/mysql/</a>
-            <span class="copy-path" data-clipboard-text="From http://zskyer.github.io/2016/03/31/mysql/　　By AllSKY" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/03/31/mysql/" title="Java面试复习（MySQL）">http://zskyer.github.io/2016/03/31/mysql/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zskyer.github.io/2016/03/31/mysql/　　作者: AllSKY" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
     </div>
 
@@ -316,8 +351,8 @@
 </article>
 
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用SQL查询语句"><span class="toc-number">1.</span> <span class="toc-text">常用SQL查询语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL索引"><span class="toc-number">2.</span> <span class="toc-text">MySQL索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#索引目的"><span class="toc-number">2.1.</span> <span class="toc-text">索引目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引原理"><span class="toc-number">2.2.</span> <span class="toc-text">索引原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引类型"><span class="toc-number">2.3.</span> <span class="toc-text">索引类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引合理使用"><span class="toc-number">2.4.</span> <span class="toc-text">索引合理使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引建立原则"><span class="toc-number">2.5.</span> <span class="toc-text">索引建立原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引使用原则"><span class="toc-number">2.6.</span> <span class="toc-text">索引使用原则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库优化"><span class="toc-number">3.</span> <span class="toc-text">数据库优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关参考"><span class="toc-number">4.</span> <span class="toc-text">相关参考</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -328,10 +363,10 @@
     }
 </style>
 
-<input type="button" id="tocButton" value="Hide" title="Show or Hide Table of Contents">
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
 <script>
-    var valueHide = "Hide";
-    var valueShow = "Show";
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
 
     if ($(".left-col").is(":hidden")) {
         $("#tocButton").attr("value", valueShow);
@@ -374,19 +409,25 @@
     </script>
 
 
+
     <div class="share">
-    <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
-    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-    </div>
-    <script>
-        window._bd_share_config={
-            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-    </script>
+    
+        <div class="bdsharebuttonbox">
+            <li id="bds_twi"><a href="#" class="bds_twi" data-cmd="twi" title="分享到推特"></a></li>
+            <li id="bds_tsina"><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></li>
+            <li id="bds_sqq"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a></li>
+            <li id="bds_copy"><a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a></li>
+            <li id="bds_mail"><a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a></li>
+            <li id="bds_weixin"><a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a></li>
+            <li id="bds_more"><a href="#" class="bds_more" data-cmd="more"></a></li>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Java面试复习（MySQL）　| 小天碎碎念　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
 </div>
 
 
@@ -394,7 +435,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/03/31/mysql/" data-title="Java面试复习（Mysql）" data-url="http://zskyer.github.io/2016/03/31/mysql/"></div>
+    <div class="ds-thread" data-thread-key="2016/03/31/mysql/" data-title="Java面试复习（MySQL）" data-url="http://zskyer.github.io/2016/03/31/mysql/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -415,21 +456,21 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/03/31/crawler/" title="Pre: Python简单爬虫实例">
+            <a href="/2016/03/31/crawler/" title="上一篇: Python简单爬虫实例">
                 <i class="fa fa-angle-left"></i>
             </a>
         
 
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/03/31/spring/" title="Next: Java面试复习（Spring）">
+            <a href="/2016/03/31/spring/" title="下一篇: Java面试复习（Spring）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/crawler/">Python简单爬虫实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/mysql/">Java面试复习（Mysql）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/spring/">Java面试复习（Spring）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/collection/">Java面试复习（集合）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/thread/">Java面试复习（并发与多线程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/jvm/">Java面试复习（JVM）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/21/hexo/">Hexo博客搭建</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/nio/">Java面试复习（I/O）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/recommendation/">推荐算法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/servlet/">Java面试复习（Servlet）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/crawler/">Python简单爬虫实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/mysql/">Java面试复习（MySQL）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/spring/">Java面试复习（Spring）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/collection/">Java面试复习（集合）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/thread/">Java面试复习（并发与多线程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/jvm/">Java面试复习（JVM）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/21/hexo/">Hexo博客搭建</a></li></ul>
 
 
     <script>
@@ -442,14 +483,14 @@
                 &copy; 2016 AllSKY
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style="display:none">
-                        <span id="site-visit">Site Visitors: 
+                        <span id="site-visit">本站到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -459,7 +500,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style="display:none">
-                        <span id="page-visit">Page Hits: 
+                        <span id="page-visit">本页阅读量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -508,9 +549,9 @@ MathJax.Hub.Queue(function() {
 </script>
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 
     <script src="//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js"></script>

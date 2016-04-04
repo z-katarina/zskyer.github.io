@@ -3,48 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>关于我 &amp; 留言板 | 小天碎碎念</title>
+  <title>Java面试复习（I/O） | 小天碎碎念</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <meta name="description" content="strong a {
-        color: #747474;
-    }
-    .player {
-        text-align: center;
-        margin: .5em auto 0;
-        width: 100%;
-        max-width: 22em;
-    }
-    .player br {
-        displa">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我 & 留言板">
-<meta property="og:url" content="http://zskyer.github.io/about/index.html">
+  <meta name="description" content="总结Java I/O工作机制。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java面试复习（I/O）">
+<meta property="og:url" content="http://zskyer.github.io/2016/04/04/nio/index.html">
 <meta property="og:site_name" content="小天碎碎念">
-<meta property="og:description" content="strong a {
-        color: #747474;
-    }
-    .player {
-        text-align: center;
-        margin: .5em auto 0;
-        width: 100%;
-        max-width: 22em;
-    }
-    .player br {
-        displa">
-<meta property="og:updated_time" content="2016-03-30T15:12:24.468Z">
+<meta property="og:description" content="总结Java I/O工作机制。">
+<meta property="og:updated_time" content="2016-04-04T14:42:34.761Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于我 & 留言板">
-<meta name="twitter:description" content="strong a {
-        color: #747474;
-    }
-    .player {
-        text-align: center;
-        margin: .5em auto 0;
-        width: 100%;
-        max-width: 22em;
-    }
-    .player br {
-        displa">
+<meta name="twitter:title" content="Java面试复习（I/O）">
+<meta name="twitter:description" content="总结Java I/O工作机制。">
   
     <link rel="alternative" href="/atom.xml" title="小天碎碎念" type="application/atom+xml">
   
@@ -75,7 +45,7 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -271,11 +241,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-nio" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/about/index.html" class="article-date">
-      <time datetime="2016-03-15T08:59:26.000Z" itemprop="datePublished">2016-03-15</time>
+      <a href="/2016/04/04/nio/" class="article-date">
+      <time datetime="2016-04-04T14:39:46.000Z" itemprop="datePublished">2016-04-04</time>
 </a>
     </div>
   
@@ -286,13 +256,17 @@
     
       <header class="article-header">
         <h1 class="article-title" itemprop="name">
-      关于我 &amp; 留言板
+      Java面试复习（I/O）
     </h1>
       </header>
       
       <div class="article-info article-info-post">
-        
-        
+        <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+    </div>
+        <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IO/">IO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
         <div class="clearfix"></div>
       </div>
       
@@ -300,110 +274,106 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta {
-        display: none;
-    }
-    #container .article .article-title {
-        padding-right: 0;
-    }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover {
-        border-left: none;
-    }
-    .article-title {
-        font-size: 1.6em
-    }
-    .article-meta {
-        display: none;
-    }
-    .article-entry hr {
-        margin: 0;
-    }
-    #container .article-info-post.article-info {
-      display: none;
-      }
-    #container .article .article-title {
-    padding: 0;
-    }
-</style>
-          
-        <style type="text/css">
-    strong a {
-        color: #747474;
-    }
-    .player {
-        text-align: center;
-        margin: .5em auto 0;
-        width: 100%;
-        max-width: 22em;
-    }
-    .player br {
-        display: none;
-    }
-    .sign {
-        text-align: right;
-        font-style: italic;
-    }
-    #ds-recent-visitors {
-        margin: 0;
-        padding: 0;
-    }
-    #ds-recent-visitors div img {
-        display: inline-block !important;
-        width: 56px !important;
-        height: 56px !important;
-        border-radius: 50%;
-        border: 1px solid #ddd;
-        padding: 2px;
-    }
-    .article-entry img:first-child {
-        display: block;
-    }
-    .article-entry span {
-        font-family: Arial;
-    }
-    #ds-hot-posts {
-        display: none;
-    }
-</style>
-
-<hr>
-<p><strong>个人简介:</strong></p>
-<blockquote>
+        <p>总结Java I/O工作机制。</p>
+<a id="more"></a>
+<h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><h2 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h2><blockquote>
 <ul>
-<li>即将毕业的研二狗一枚；</li>
-<li>立志做一名Web全栈工程师。</li>
+<li><a href="http://wiki.jikexueyuan.com/project/java-nio/" target="_blank" rel="external">Java NIO 指南</a></li>
 </ul>
 </blockquote>
-<p><strong>兴趣爱好:</strong></p>
-<blockquote>
-<ul>
-<li>爱阅读，爱音乐，爱旅行，爱一切美好的事物；</li>
-<li>有酒有肉没姑娘，能贫能笑不干架。</li>
-</ul>
-</blockquote>
-<p><strong>欢迎交流:</strong></p>
-<blockquote>
-<ul>
-<li>个人邮件及社交网站等信息见边栏底部；</li>
-<li>有什么留言或问题直接在文末留下评论即可。</li>
-</ul>
-</blockquote>
-<ul class="ds-recent-visitors" data-num-items="30" data-avatar-size="56"></ul>
       
     </div>
     
   </div>
   
-    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/04/04/nio/">Java面试复习（I/O）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">AllSKY</a></p>
+        <p><span>发布时间:</span>2016-04-04, 22:39:46</p>
+        <p><span>最后更新:</span>2016-04-04, 22:42:34</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/04/04/nio/" title="Java面试复习（I/O）">http://zskyer.github.io/2016/04/04/nio/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zskyer.github.io/2016/04/04/nio/　　作者: AllSKY" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/04/02/recommendation/">
+                    推荐算法小结
+                </a>
+            </div>
+        
+    </nav>
   
 </article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO"><span class="toc-number">1.</span> <span class="toc-text">NIO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关参考"><span class="toc-number">2.</span> <span class="toc-text">相关参考</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+    <style>
+        .toc {
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            $(".toc li a").mouseover(function() {
+                var title = $(this).find('.toc-text').text();
+                $(this).attr("title", title);
+            });
+        })
+    </script>
 
 
 
@@ -420,7 +390,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"关于我 & 留言板　| 小天碎碎念　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Java面试复习（I/O）　| 小天碎碎念　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -432,7 +402,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="about/index.html" data-title="关于我 &amp; 留言板" data-url="http://zskyer.github.io/about/index.html"></div>
+    <div class="ds-thread" data-thread-key="2016/04/04/nio/" data-title="Java面试复习（I/O）" data-url="http://zskyer.github.io/2016/04/04/nio/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -451,12 +421,24 @@
     
 
 
+<div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
 
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/04/02/recommendation/" title="下一篇: 推荐算法小结">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/nio/">Java面试复习（I/O）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/recommendation/">推荐算法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/servlet/">Java面试复习（Servlet）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/crawler/">Python简单爬虫实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/mysql/">Java面试复习（MySQL）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/spring/">Java面试复习（Spring）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/collection/">Java面试复习（集合）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/thread/">Java面试复习（并发与多线程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/jvm/">Java面试复习（JVM）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/21/hexo/">Hexo博客搭建</a></li></ul>
 
 
     <script>
-        
-            yiliaConfig.fancybox = false;
         
     </script></div>
       <footer id="footer">
