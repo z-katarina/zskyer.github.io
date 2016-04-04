@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zskyer.github.io/"/>
-  <updated>2016-04-04T14:42:34.761Z</updated>
+  <updated>2016-04-04T15:20:05.105Z</updated>
   <id>http://zskyer.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://zskyer.github.io/2016/04/04/nio/"/>
     <id>http://zskyer.github.io/2016/04/04/nio/</id>
     <published>2016-04-04T14:39:46.000Z</published>
-    <updated>2016-04-04T14:42:34.761Z</updated>
+    <updated>2016-04-04T15:20:05.105Z</updated>
     
     <content type="html">&lt;p&gt;总结Java I/O工作机制。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -39,9 +39,9 @@
       <category term="Java" scheme="http://zskyer.github.io/categories/Java/"/>
     
     
-      <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
       <category term="IO" scheme="http://zskyer.github.io/tags/IO/"/>
+    
+      <category term="NIO" scheme="http://zskyer.github.io/tags/NIO/"/>
     
   </entry>
   
@@ -50,7 +50,7 @@
     <link href="http://zskyer.github.io/2016/04/02/recommendation/"/>
     <id>http://zskyer.github.io/2016/04/02/recommendation/</id>
     <published>2016-04-02T12:53:27.000Z</published>
-    <updated>2016-04-02T12:59:06.015Z</updated>
+    <updated>2016-04-04T15:19:31.858Z</updated>
     
     <content type="html"></content>
     
@@ -58,12 +58,12 @@
     
     </summary>
     
-      <category term="数据挖掘" scheme="http://zskyer.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+      <category term="Data Mining" scheme="http://zskyer.github.io/categories/Data-Mining/"/>
     
     
-      <category term="推荐系统" scheme="http://zskyer.github.io/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/"/>
+      <category term="recommendation" scheme="http://zskyer.github.io/tags/recommendation/"/>
     
-      <category term="算法" scheme="http://zskyer.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="Algorithm" scheme="http://zskyer.github.io/tags/Algorithm/"/>
     
   </entry>
   
@@ -72,7 +72,7 @@
     <link href="http://zskyer.github.io/2016/04/02/servlet/"/>
     <id>http://zskyer.github.io/2016/04/02/servlet/</id>
     <published>2016-04-02T12:52:12.000Z</published>
-    <updated>2016-04-04T11:51:28.174Z</updated>
+    <updated>2016-04-04T15:19:37.007Z</updated>
     
     <content type="html">&lt;p&gt;Servlet学习笔记简单总结。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -120,8 +120,6 @@
     
       <category term="Java" scheme="http://zskyer.github.io/categories/Java/"/>
     
-    
-      <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
     
       <category term="servlet" scheme="http://zskyer.github.io/tags/servlet/"/>
     
@@ -211,7 +209,7 @@
     <link href="http://zskyer.github.io/2016/03/31/spring/"/>
     <id>http://zskyer.github.io/2016/03/31/spring/</id>
     <published>2016-03-31T14:57:26.000Z</published>
-    <updated>2016-04-04T15:08:41.939Z</updated>
+    <updated>2016-04-04T15:18:48.176Z</updated>
     
     <content type="html">&lt;p&gt;总结spring及其相关组件的基本原理和用法。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -294,8 +292,6 @@
       <category term="Java" scheme="http://zskyer.github.io/categories/Java/"/>
     
     
-      <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
       <category term="spring" scheme="http://zskyer.github.io/tags/spring/"/>
     
       <category term="springmvc" scheme="http://zskyer.github.io/tags/springmvc/"/>
@@ -307,7 +303,7 @@
     <link href="http://zskyer.github.io/2016/03/31/collection/"/>
     <id>http://zskyer.github.io/2016/03/31/collection/</id>
     <published>2016-03-31T14:54:52.000Z</published>
-    <updated>2016-04-04T15:10:00.640Z</updated>
+    <updated>2016-04-04T15:18:35.254Z</updated>
     
     <content type="html">&lt;p&gt;集合相关面试题。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -372,9 +368,7 @@
       <category term="Java" scheme="http://zskyer.github.io/categories/Java/"/>
     
     
-      <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="集合" scheme="http://zskyer.github.io/tags/%E9%9B%86%E5%90%88/"/>
+      <category term="collection" scheme="http://zskyer.github.io/tags/collection/"/>
     
   </entry>
   
@@ -383,7 +377,7 @@
     <link href="http://zskyer.github.io/2016/03/30/thread/"/>
     <id>http://zskyer.github.io/2016/03/30/thread/</id>
     <published>2016-03-30T07:54:45.000Z</published>
-    <updated>2016-04-02T04:39:08.733Z</updated>
+    <updated>2016-04-04T15:18:29.483Z</updated>
     
     <content type="html">&lt;p&gt;简单总结的Java多线程开发与并发编程相关面试题。针对有些细节问题，后面有时间的话再写专题分析吧。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -583,11 +577,7 @@
       <category term="Java" scheme="http://zskyer.github.io/categories/Java/"/>
     
     
-      <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="并发" scheme="http://zskyer.github.io/tags/%E5%B9%B6%E5%8F%91/"/>
-    
-      <category term="多线程" scheme="http://zskyer.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="multithreading" scheme="http://zskyer.github.io/tags/multithreading/"/>
     
   </entry>
   
@@ -596,7 +586,7 @@
     <link href="http://zskyer.github.io/2016/03/28/jvm/"/>
     <id>http://zskyer.github.io/2016/03/28/jvm/</id>
     <published>2016-03-28T14:39:47.000Z</published>
-    <updated>2016-04-03T07:46:29.160Z</updated>
+    <updated>2016-04-04T15:18:06.551Z</updated>
     
     <content type="html">&lt;p&gt;总结的有关java虚拟机的一些经典面试题，包括内存模型、类加载机制、垃圾回收机制等。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -745,8 +735,6 @@
     
     
       <category term="jvm" scheme="http://zskyer.github.io/tags/jvm/"/>
-    
-      <category term="面试" scheme="http://zskyer.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
