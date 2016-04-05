@@ -5,16 +5,23 @@
   
   <title>推荐算法小结 | 小天碎碎念</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <meta name="description" content="个人博客">
+  <meta name="description" content="推荐系统概述，及常用推荐算法小结。主要参考IBM开发者社区的博文“探索推荐引擎内部的秘密”。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="推荐算法小结">
 <meta property="og:url" content="http://zskyer.github.io/2016/04/02/recommendation/index.html">
 <meta property="og:site_name" content="小天碎碎念">
-<meta property="og:description" content="个人博客">
-<meta property="og:updated_time" content="2016-04-04T15:19:31.858Z">
+<meta property="og:description" content="推荐系统概述，及常用推荐算法小结。主要参考IBM开发者社区的博文“探索推荐引擎内部的秘密”。">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/1.png">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/2.png">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/3.png">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/4.png">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/5.png">
+<meta property="og:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/6.png">
+<meta property="og:updated_time" content="2016-04-05T13:02:03.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐算法小结">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:description" content="推荐系统概述，及常用推荐算法小结。主要参考IBM开发者社区的博文“探索推荐引擎内部的秘密”。">
+<meta name="twitter:image" content="http://7xsdr2.com1.z0.glb.clouddn.com/1.png">
   
     <link rel="alternative" href="/atom.xml" title="小天碎碎念" type="application/atom+xml">
   
@@ -106,10 +113,10 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
                     </ul>
@@ -274,25 +281,232 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <p>推荐系统概述，及常用推荐算法小结。主要参考IBM开发者社区的博文“探索推荐引擎内部的秘密”。</p>
+<a id="more"></a>
+<h2 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h2><blockquote>
+<ul>
+<li>物品信息：要推荐物品或内容的元数据，例如关键字，基因描述等。</li>
+<li>用户信息：系统用户的基本信息，例如性别，年龄等。</li>
+<li>用户对物品的偏好：<ul>
+<li>显式的用户反馈：例如用户对物品的评分，对物品的评论。显示的用户反馈能准确的反应用户对物品的真实喜好，但需要用户付出额外的代价。</li>
+<li>隐式的用户反馈：例如用户购买了某物品，用户查看了某物品的信息等等。隐式的用户行为，数据不精确，而且可能存在较大的噪音，但是只要选择正确的行为特征，通过一些分析和处理，也能得到很好的效果。不过行为特征的选择可能在不同的应用中有很大不同。例如电子商务网站与音乐网站的特征选取就不一样。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="推荐引擎分类"><a href="#推荐引擎分类" class="headerlink" title="推荐引擎分类"></a>推荐引擎分类</h2><blockquote>
+<ul>
+<li>大众行为的推荐引擎：对每个用户都给出同样的推荐，这些推荐可以是静态的由系统管理员人工设定的，或者基于系统所有用户的反馈统计计算出的当下比较流行的物品。</li>
+<li><p>个性化推荐引擎：对不同的用户，根据他们的口味和喜好给出更加精确的推荐，这时，系统需要了解需推荐内容和用户的特质，或者基于社会化网络，通过找到与当前用户相同喜好的用户，实现推荐。</p>
+</li>
+<li><p>基于人口统计学的推荐：根据系统用户的基本信息发现用户的相关程度。</p>
+</li>
+<li>基于内容的推荐：根据推荐物品或内容的元数据，发现物品或者内容的相关性。</li>
+<li>基于协同过滤的推荐：根据用户对物品或者信息的偏好，发现物品或者内容本身的相关性，或者是发现用户的相关性。</li>
+</ul>
+<p>其实在现在的推荐系统中，很少有只使用了一个推荐策略的推荐引擎，一般都是在不同的场景下使用不同的推荐策略从而达到最好的推荐效果，例如Amazon的推荐，它将基于用户本身历史购买数据的推荐，和基于用户当前浏览的物品的推荐，以及基于大众喜好的当下比较流行的物品在不同的区域推荐给用户，让用户可以从全方位的推荐中找到自己真正感兴趣的物品。</p>
+</blockquote>
+<h2 id="推荐算法"><a href="#推荐算法" class="headerlink" title="推荐算法"></a>推荐算法</h2><h3 id="基于人口统计学的推荐"><a href="#基于人口统计学的推荐" class="headerlink" title="基于人口统计学的推荐"></a>基于人口统计学的推荐</h3><p><img src="http://7xsdr2.com1.z0.glb.clouddn.com/1.png" alt="基于人口统计学的推荐机制的工作原理"></p>
+<blockquote>
+<ul>
+<li>根据系统用户的基本信息发现用户的相关程度，然后将相似用户喜爱的其他物品推荐给当前用户。</li>
+<li>优点：<ol>
+<li>因为不使用当前用户对物品的喜欢历史数据，所以对于新用户来讲没有“冷启动”问题。</li>
+<li>该方法不依赖物品本身的数据，所以在不同物品的领域都可以使用。</li>
+</ol>
+</li>
+<li>缺点：<ol>
+<li>分类过于粗糙，在对品味要求较高的领域，如图书、电影、音乐等，无法得到很好的推荐效果。</li>
+<li>会涉及到一些与信息发现问题本身无关却比较敏感的信息，有些用户信息不好获取。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h3 id="基于内容推荐"><a href="#基于内容推荐" class="headerlink" title="基于内容推荐"></a>基于内容推荐</h3><p><img src="http://7xsdr2.com1.z0.glb.clouddn.com/2.png" alt="基于内容推荐机制的基本原理"></p>
+<blockquote>
+<ul>
+<li>根据推荐物品或内容的元数据，发现物品或者内容的相关性，然后基于用户以往的喜好记录，推荐给用户相似的物品。</li>
+<li>需要对物品进行分析和建模，推荐的质量依赖于对物品模型的完整和全面程度。一般以关键词或标签来描述物品元数据。</li>
+<li>物品相似度的分析仅仅依赖于物品本身的特征，没有考虑人对物品的态度。</li>
+<li>存在新用户“冷启动”的问题。</li>
+</ul>
+</blockquote>
+<h3 id="基于用户的协同过滤推荐"><a href="#基于用户的协同过滤推荐" class="headerlink" title="基于用户的协同过滤推荐"></a>基于用户的协同过滤推荐</h3><p><img src="http://7xsdr2.com1.z0.glb.clouddn.com/3.png" alt="基于用户的协同过滤推荐机制的基本原理"></p>
+<blockquote>
+<ul>
+<li>根据所有用户对物品或者信息的偏好，发现与当前用户口味和偏好相似的“邻居”用户群，一般采用“K-近邻”算法，然后基于这K个邻居的历史偏好信息，为当前用户进行推荐。“喜欢类似物品的用户可能有相似的偏好”</li>
+<li>在新闻等领域，物品的个数大于用户的个数，所以一般使用基于用户的协同过滤。</li>
+</ul>
+</blockquote>
+<h3 id="基于物品的协同过滤推荐"><a href="#基于物品的协同过滤推荐" class="headerlink" title="基于物品的协同过滤推荐"></a>基于物品的协同过滤推荐</h3><p><img src="http://7xsdr2.com1.z0.glb.clouddn.com/4.png" alt="基于物品的协同过滤推荐机制的基本原理"></p>
+<blockquote>
+<ul>
+<li>根据所有用户对物品或者信息的偏好，发现物品与物品之间的相似度，然后根据用户的历史偏好信息，将类似的物品推荐给用户。</li>
+<li>在电商等领域，物品的个数远远小于用户的数量，而且物品的个数和相似度对比比较稳定，所以一般使用基于物品的协同过滤。</li>
+</ul>
+</blockquote>
+<h3 id="协同过滤算法总结"><a href="#协同过滤算法总结" class="headerlink" title="协同过滤算法总结"></a>协同过滤算法总结</h3><blockquote>
+<ul>
+<li>优点：<ol>
+<li>不需要对物品或者用户进行严格的建模，而且不要求物品的描述是机器可以理解的，所以该方法也是领域无关的。</li>
+<li>这种方法计算出来的推荐是开放的，可以共用他人的经验，很好的支持用户发现潜在的兴趣偏好。</li>
+</ol>
+</li>
+<li>缺点：<ol>
+<li>方法的核心是基于历史数据，所以对新物品和新用户都有“冷启动”问题。</li>
+<li>推荐的效果依赖于用户历史偏好数据的多少和准确性。</li>
+<li>在大部分实现中，用户历史偏好是用稀疏矩阵进行存储的。可能少部分人的错误偏好会对推荐的准确度有很大影响等等。</li>
+<li>对于一些特殊品味的用户不能给予很好的推荐。</li>
+<li>由于以历史数据为基础，抓取和建模用户的偏好后，很难修改或者根据用户的使用演变，从而导致方法不够灵活。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h3 id="混合推荐机制"><a href="#混合推荐机制" class="headerlink" title="混合推荐机制"></a>混合推荐机制</h3><blockquote>
+<ul>
+<li>加权的混合：用线性公式将几种不同的推荐方法按照一定权重组合起来。</li>
+<li>切换的混合：不同场景下，使用不同的推荐方法。</li>
+<li>分区的混合：多种推荐机制的结果分为不同的区显示给用户。</li>
+<li>分层的混合：将一个推荐机制的结果作为另一个的输入。</li>
+</ul>
+</blockquote>
+<h2 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h2><h3 id="收集用户偏好"><a href="#收集用户偏好" class="headerlink" title="收集用户偏好"></a>收集用户偏好</h3><blockquote>
+<ul>
+<li>显示：评分、评论、点赞、转发、收藏</li>
+<li>隐式：页面停留时间、购买、查看详情</li>
+</ul>
+<ol>
+<li>分组：将不同的行为分组。</li>
+<li>加权：根据不同行为反映用户喜好的程度，进行加权。一般显示反馈权重大于隐式反馈。</li>
+<li>减噪：通过经典的数据挖掘算法过滤掉行为数据中的噪音，使我们的分析更加精确。</li>
+<li>归一化：不同行为的数据取值可能相差很大，比如用户的查看数据必然比购买数据大很多。需要将各个行为的数据统一在一个相同的取值范围中，从而使得加权求和得到的总体喜好更加精确。最简单的归一化方法是将各类数据除以此类中的最大值，以保证归一化的数据取值在[0，1]中。</li>
+<li>最终得到一个用户偏好二维矩阵，一维是用户列表，另一维是物品列表，值是用户对物品的偏好，一般是[0，1]或者[-1，1]的浮点数值。</li>
+</ol>
+</blockquote>
+<h3 id="相似度计算"><a href="#相似度计算" class="headerlink" title="相似度计算"></a>相似度计算</h3><blockquote>
+<ul>
+<li>基于用户的CF：将一个用户对所有物品的偏好作为一个向量来计算用户之间的相似度。</li>
+<li>基于物品的CF：将所有用户对某个物品的偏好作为一个向量来计算物品之间的相似度。</li>
+</ul>
+<p>欧几里德距离（距离越小，相似度越大）<br>  d\left ( x,y \right )=\sqrt{\left ( \sum \left ( X<em>{i}-Y</em>{i} \right )^{2} \right )}<br>  \sin \left ( x,y \right )=\frac{1}{d\left ( x,y \right )}</p>
+<p>皮尔逊相关系数</p>
+<p>相似邻居的计算：</p>
+<ol>
+<li>不论距离远近，固定取最近的K个</li>
+<li>以当前点为中心，取距离为K的圆形区域内的所有点。</li>
+</ol>
+</blockquote>
+<h3 id="计算推荐"><a href="#计算推荐" class="headerlink" title="计算推荐"></a>计算推荐</h3><blockquote>
+<ul>
+<li>基于用户：找到K邻居后，根据邻居的相似度权重以及他们对物品的偏好，预测当前用户没有偏好的未涉及物品，计算得到一个排序的物品列表作为推荐。<br><img src="http://7xsdr2.com1.z0.glb.clouddn.com/5.png" alt="基于用户的CF的基本原理"></li>
+<li>基于物品：得到物品的相似物品后，根据用户的历史偏好预测当前用户还没有表示偏好的物品，计算得到一个排序的物品列表作为推荐。<br><img src="http://7xsdr2.com1.z0.glb.clouddn.com/6.png" alt="基于物品的CF的基本原理"></li>
+<li>在非社交网络网站中，一般用基于物品的协同过滤推荐。因为用户数量远远大于物品的数量，且物品的数据相对稳定，因此计算物品的相似度计算量较小，同时不必频繁更新。<br>在社交网络网站中，一般用基于用户的协同过滤推荐。</li>
+</ul>
+</blockquote>
+<h3 id="推荐多样性"><a href="#推荐多样性" class="headerlink" title="推荐多样性"></a>推荐多样性</h3><blockquote>
+<ul>
+<li>对于单个用户而言，User CF多样性优于Item CF。因为Item CF的推荐就是和以前看的东西最相似的。</li>
+<li>从系统的多样性考虑，Item CF多样性优于User CF。因为User CF总是倾向于推荐热门的。</li>
+<li>一般情况下应结合两者方法综合推荐。</li>
+</ul>
+</blockquote>
+<h3 id="用户对推荐算法的适应度"><a href="#用户对推荐算法的适应度" class="headerlink" title="用户对推荐算法的适应度"></a>用户对推荐算法的适应度</h3><blockquote>
+<ul>
+<li>对于User CF，推荐的原则是假设用户会喜欢那些和他有相同喜好的用户喜好的东西。因此一个用户对CF算法的适应度和他有多少共同喜好用户成正比。</li>
+<li>对于Item CF，推荐原则是假设用户会喜欢和他以前喜欢的东西相似的东西，可以计算一个用户喜欢的物品的自相似度。一个用户喜欢物品的自相似度大，说明他喜欢的东西都是比较相似的，那么他对Item CF的适应度较好。</li>
+</ul>
+</blockquote>
+<h2 id="Slope-One"><a href="#Slope-One" class="headerlink" title="Slope One"></a>Slope One</h2><p>SlopeOne的思想很简单，就是用均值化的思想来掩盖个体的打分差异，举个例子说明一下：<br>R王五 = 4 - {[(5 - 10) + (4 - 5)] / 2} = 7</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">用户</th>
+<th style="text-align:center">对事物A打分</th>
+<th style="text-align:center">对事物B打分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">张三</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center">李四</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">王五</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">?</td>
+</tr>
+</tbody>
+</table>
+<p>当多于两项商品时，计算公式为：<br>rb = (n <em> (ra - R(a-&gt;b)) + m </em> (rc - R(c-&gt;b))) / (m + n)<br>a, b, c代表“商品”，ra代表“商品的打分值”，R(a-&gt;b)代表“a组到b组的平均差”，m, n代表人数。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Rating</th>
+<th style="text-align:center">洗衣机</th>
+<th style="text-align:center">电冰箱</th>
+<th style="text-align:center">彩电</th>
+<th style="text-align:center">空调</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">张三</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">李四</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center">王五</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">？</td>
+<td style="text-align:center">5</td>
+</tr>
+</tbody>
+</table>
+<p>R(洗衣机-&gt;彩电) = [(5 - 10) + (4 - 4)] / 2 = -2.5<br>R(电冰箱-&gt;彩电) = [(10 - 10) + (5 - 4)] / 2 = 0.5<br>R(空调-&gt;彩电) = [(5 - 10) + (10 - 4)] / 2 = 0.5<br>r王五 = (2 <em> (4 + 2.5) + 2 </em> (10 - 0.5) + 2 * (5 - 0.5)) / (2 + 2 + 2) = 6.833</p>
+<h2 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h2><blockquote>
+<ul>
+<li><a href="http://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/" target="_blank" rel="external">推荐引擎初探</a></li>
+<li><a href="http://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy2/" target="_blank" rel="external">深入推荐引擎相关算法 - 协同过滤</a></li>
+<li><a href="http://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy3/" target="_blank" rel="external">深入推荐引擎相关算法 - 聚类</a></li>
+<li><a href="http://www.cnblogs.com/huangxincheng/archive/2012/11/22/2782647.html" target="_blank" rel="external">协同推荐SlopeOne算法</a></li>
+<li>《集体智慧编程》Toby Segaran 著</li>
+<li>《推荐系统实践》项亮 著</li>
+</ul>
+</blockquote>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/04/02/recommendation/">推荐算法小结</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">AllSKY</a></p>
-        <p><span>发布时间:</span>2016-04-02, 20:53:27</p>
-        <p><span>最后更新:</span>2016-04-04, 23:19:31</p>
+        <p><span>Title:</span><a href="/2016/04/02/recommendation/">推荐算法小结</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">AllSKY</a></p>
+        <p><span>Created:</span>2016-04-02, 20:53:27</p>
+        <p><span>Updated:</span>2016-04-05, 21:02:03</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/04/02/recommendation/" title="推荐算法小结">http://zskyer.github.io/2016/04/02/recommendation/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://zskyer.github.io/2016/04/02/recommendation/　　作者: AllSKY" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/04/02/recommendation/" title="推荐算法小结">http://zskyer.github.io/2016/04/02/recommendation/</a>
+            <span class="copy-path" data-clipboard-text="From http://zskyer.github.io/2016/04/02/recommendation/　　By AllSKY" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
         </p>
     </div>
 
@@ -318,8 +532,8 @@
 </article>
 
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
+    <strong class="toc-title">Contents</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据源"><span class="toc-number">1.</span> <span class="toc-text">数据源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐引擎分类"><span class="toc-number">2.</span> <span class="toc-text">推荐引擎分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐算法"><span class="toc-number">3.</span> <span class="toc-text">推荐算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于人口统计学的推荐"><span class="toc-number">3.1.</span> <span class="toc-text">基于人口统计学的推荐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于内容推荐"><span class="toc-number">3.2.</span> <span class="toc-text">基于内容推荐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于用户的协同过滤推荐"><span class="toc-number">3.3.</span> <span class="toc-text">基于用户的协同过滤推荐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于物品的协同过滤推荐"><span class="toc-number">3.4.</span> <span class="toc-text">基于物品的协同过滤推荐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协同过滤算法总结"><span class="toc-number">3.5.</span> <span class="toc-text">协同过滤算法总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#混合推荐机制"><span class="toc-number">3.6.</span> <span class="toc-text">混合推荐机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协同过滤"><span class="toc-number">4.</span> <span class="toc-text">协同过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#收集用户偏好"><span class="toc-number">4.1.</span> <span class="toc-text">收集用户偏好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相似度计算"><span class="toc-number">4.2.</span> <span class="toc-text">相似度计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算推荐"><span class="toc-number">4.3.</span> <span class="toc-text">计算推荐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐多样性"><span class="toc-number">4.4.</span> <span class="toc-text">推荐多样性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户对推荐算法的适应度"><span class="toc-number">4.5.</span> <span class="toc-text">用户对推荐算法的适应度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Slope-One"><span class="toc-number">5.</span> <span class="toc-text">Slope One</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关参考"><span class="toc-number">6.</span> <span class="toc-text">相关参考</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -330,10 +544,10 @@
     }
 </style>
 
-<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+<input type="button" id="tocButton" value="Hide" title="Show or Hide Table of Contents">
 <script>
-    var valueHide = "隐藏目录";
-    var valueShow = "显示目录";
+    var valueHide = "Hide";
+    var valueShow = "Show";
 
     if ($(".left-col").is(":hidden")) {
         $("#tocButton").attr("value", valueShow);
@@ -423,15 +637,15 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/04/04/nio/" title="上一篇: Java面试复习（I/O）">
+            <a href="/2016/04/04/nio/" title="Pre: Java面试复习（I/O）">
                 <i class="fa fa-angle-left"></i>
             </a>
         
 
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/04/02/servlet/" title="下一篇: Java面试复习（Servlet）">
+            <a href="/2016/04/02/servlet/" title="Next: Java面试复习（Servlet）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -450,14 +664,14 @@
                 &copy; 2016 AllSKY
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style="display:none">
-                        <span id="site-visit">本站到访数: 
+                        <span id="site-visit">Site Visitors: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -467,7 +681,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style="display:none">
-                        <span id="page-visit">本页阅读量: 
+                        <span id="page-visit">Page Hits: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -516,9 +730,9 @@ MathJax.Hub.Queue(function() {
 </script>
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 
     <script src="//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js"></script>
