@@ -5,16 +5,16 @@
   
   <title>Python简单爬虫实例 | 小天碎碎念</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <meta name="description" content="个人博客">
+  <meta name="description" content="Python爬虫简单实例介绍，主要用到了python的requests和beautifulsoup库。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python简单爬虫实例">
 <meta property="og:url" content="http://zskyer.github.io/2016/03/31/crawler/index.html">
 <meta property="og:site_name" content="小天碎碎念">
-<meta property="og:description" content="个人博客">
-<meta property="og:updated_time" content="2016-04-01T03:10:36.548Z">
+<meta property="og:description" content="Python爬虫简单实例介绍，主要用到了python的requests和beautifulsoup库。">
+<meta property="og:updated_time" content="2016-04-06T13:51:43.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python简单爬虫实例">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:description" content="Python爬虫简单实例介绍，主要用到了python的requests和beautifulsoup库。">
   
     <link rel="alternative" href="/atom.xml" title="小天碎碎念" type="application/atom+xml">
   
@@ -157,7 +157,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Algorithm/" style="font-size: 10px">Algorithm</a> <a href="/tags/Github/" style="font-size: 10px">Github</a> <a href="/tags/Hexo/" style="font-size: 10px">Hexo</a> <a href="/tags/IO/" style="font-size: 10px">IO</a> <a href="/tags/NIO/" style="font-size: 10px">NIO</a> <a href="/tags/beautifulsoup/" style="font-size: 10px">beautifulsoup</a> <a href="/tags/collection/" style="font-size: 10px">collection</a> <a href="/tags/jvm/" style="font-size: 10px">jvm</a> <a href="/tags/multithreading/" style="font-size: 10px">multithreading</a> <a href="/tags/mysql/" style="font-size: 10px">mysql</a> <a href="/tags/python/" style="font-size: 10px">python</a> <a href="/tags/recommendation/" style="font-size: 10px">recommendation</a> <a href="/tags/requests/" style="font-size: 10px">requests</a> <a href="/tags/servlet/" style="font-size: 10px">servlet</a> <a href="/tags/spring/" style="font-size: 10px">spring</a> <a href="/tags/springmvc/" style="font-size: 10px">springmvc</a>
+                        <a href="/tags/Github/" style="font-size: 10px">Github</a> <a href="/tags/Hexo/" style="font-size: 10px">Hexo</a> <a href="/tags/IO/" style="font-size: 10px">IO</a> <a href="/tags/NIO/" style="font-size: 10px">NIO</a> <a href="/tags/Tree/" style="font-size: 10px">Tree</a> <a href="/tags/beautifulsoup/" style="font-size: 10px">beautifulsoup</a> <a href="/tags/collection/" style="font-size: 10px">collection</a> <a href="/tags/jvm/" style="font-size: 10px">jvm</a> <a href="/tags/multithreading/" style="font-size: 10px">multithreading</a> <a href="/tags/mysql/" style="font-size: 10px">mysql</a> <a href="/tags/python/" style="font-size: 10px">python</a> <a href="/tags/recommendation/" style="font-size: 10px">recommendation</a> <a href="/tags/requests/" style="font-size: 10px">requests</a> <a href="/tags/servlet/" style="font-size: 10px">servlet</a> <a href="/tags/sort/" style="font-size: 10px">sort</a> <a href="/tags/spring/" style="font-size: 10px">spring</a> <a href="/tags/springmvc/" style="font-size: 10px">springmvc</a>
                     </div>
                 </section>
                 
@@ -274,7 +274,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <p>Python爬虫简单实例介绍，主要用到了python的requests和beautifulsoup库。</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">html = requests.get(<span class="string">"http://music.163.com/playlist?id=150943883"</span>)</span><br><span class="line">soup = BeautifulSoup(html.text, <span class="string">"lxml"</span>)</span><br><span class="line">message = soup.find(<span class="string">"textarea"</span>)</span><br><span class="line">dicts = json.loads(message.string)</span><br><span class="line"><span class="keyword">for</span> msg <span class="keyword">in</span> dicts:</span><br><span class="line">    music = dict()</span><br><span class="line">    music[<span class="string">"name"</span>] = msg[<span class="string">"name"</span>]</span><br><span class="line">    <span class="keyword">for</span> artist <span class="keyword">in</span> msg[<span class="string">"artists"</span>]:</span><br><span class="line">        music[<span class="string">"artist"</span>] = msg[<span class="string">"artists"</span>]</span><br><span class="line">    music[<span class="string">"album"</span>] = msg[<span class="string">"album"</span>][<span class="string">"name"</span>]</span><br><span class="line">    print(music)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PandaCrawler</span>:</span></span><br><span class="line">    pageno = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        payload = &#123;<span class="string">"status"</span>: <span class="string">"2"</span>, <span class="string">"order"</span>: <span class="string">"person_num"</span>, <span class="string">"pageno"</span>: str(pageno), <span class="string">"pagenum"</span>: <span class="string">"30"</span>&#125;</span><br><span class="line">        html = requests.get(<span class="string">"http://www.panda.tv/live_lists"</span>, params=payload)</span><br><span class="line">        liveJson = json.loads(html.text)</span><br><span class="line">        liveDict = liveJson[<span class="string">"data"</span>][<span class="string">"items"</span>]</span><br><span class="line">        <span class="keyword">for</span> live <span class="keyword">in</span> liveDict:</span><br><span class="line">            room = dict()</span><br><span class="line">            room[<span class="string">"id"</span>] = live[<span class="string">"id"</span>]</span><br><span class="line">            room[<span class="string">"title"</span>] = live[<span class="string">"name"</span>]</span><br><span class="line">            room[<span class="string">"hostName"</span>] = live[<span class="string">"userinfo"</span>][<span class="string">"nickName"</span>]</span><br><span class="line">            room[<span class="string">"classification"</span>] = live[<span class="string">"classification"</span>][<span class="string">"cname"</span>]</span><br><span class="line">            room[<span class="string">"personNum"</span>] = live[<span class="string">"person_num"</span>]</span><br><span class="line">            print(room)</span><br><span class="line">        <span class="keyword">if</span> len(liveDict) == <span class="number">30</span>:</span><br><span class="line">            pageno += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -284,7 +287,7 @@
         <p><span>本文标题:</span><a href="/2016/03/31/crawler/">Python简单爬虫实例</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">AllSKY</a></p>
         <p><span>发布时间:</span>2016-03-31, 23:00:02</p>
-        <p><span>最后更新:</span>2016-04-01, 11:10:36</p>
+        <p><span>最后更新:</span>2016-04-06, 21:51:43</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/03/31/crawler/" title="Python简单爬虫实例">http://zskyer.github.io/2016/03/31/crawler/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zskyer.github.io/2016/03/31/crawler/　　作者: AllSKY" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -437,7 +440,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/nio/">Java面试复习（I/O）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/recommendation/">推荐算法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/servlet/">Java面试复习（Servlet）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/crawler/">Python简单爬虫实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/mysql/">Java面试复习（MySQL）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/spring/">Java面试复习（Spring）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/collection/">Java面试复习（集合）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/thread/">Java面试复习（并发与多线程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/jvm/">Java面试复习（JVM）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/21/hexo/">Hexo博客搭建</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/06/sort/">排序算法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/06/red-black-tree/">红黑树</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/04/nio/">Java面试复习（I/O）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/recommendation/">推荐算法小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/servlet/">Java面试复习（Servlet）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/crawler/">Python简单爬虫实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/mysql/">Java面试复习（MySQL）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/spring/">Java面试复习（Spring）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/collection/">Java面试复习（集合）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/thread/">Java面试复习（并发与多线程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/jvm/">Java面试复习（JVM）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/21/hexo/">Hexo博客搭建</a></li></ul>
 
 
     <script>
