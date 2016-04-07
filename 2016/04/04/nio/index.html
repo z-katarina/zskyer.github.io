@@ -5,16 +5,16 @@
   
   <title>Java面试复习（I/O） | 小天碎碎念</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <meta name="description" content="总结Java I/O工作机制。">
+  <meta name="description" content="总结Java I/O工作机制，包括BIO、NIO、AIO。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java面试复习（I/O）">
 <meta property="og:url" content="http://zskyer.github.io/2016/04/04/nio/index.html">
 <meta property="og:site_name" content="小天碎碎念">
-<meta property="og:description" content="总结Java I/O工作机制。">
-<meta property="og:updated_time" content="2016-04-04T15:20:05.105Z">
+<meta property="og:description" content="总结Java I/O工作机制，包括BIO、NIO、AIO。">
+<meta property="og:updated_time" content="2016-04-06T17:04:51.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试复习（I/O）">
-<meta name="twitter:description" content="总结Java I/O工作机制。">
+<meta name="twitter:description" content="总结Java I/O工作机制，包括BIO、NIO、AIO。">
   
     <link rel="alternative" href="/atom.xml" title="小天碎碎念" type="application/atom+xml">
   
@@ -274,11 +274,24 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>总结Java I/O工作机制。</p>
+        <p>总结Java I/O工作机制，包括BIO、NIO、AIO。</p>
 <a id="more"></a>
-<h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><h2 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h2><blockquote>
+<h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><blockquote>
 <ul>
-<li><a href="http://wiki.jikexueyuan.com/project/java-nio/" target="_blank" rel="external">Java NIO 指南</a></li>
+<li>BIO：同步并阻塞，服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。</li>
+<li>NIO：同步非阻塞，服务器实现模式为一个请求一个线程，即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有I/O请求时才启动一个线程进行处理。</li>
+<li><p>AIO：异步非阻塞，服务器实现模式为一个有效请求一个线程，客户端的I/O请求都是由OS先完成了再通知服务器应用去启动线程进行处理。</p>
+</li>
+<li><p>BIO方式适用于连接数目比较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中。</p>
+</li>
+<li>NIO方式适用于连接数目多且连接比较短（轻操作）的架构，比如聊天服务器，并发局限于应用中。</li>
+<li>AIO方式使用于连接数目多且连接比较长（重操作）的架构，比如相册服务器，充分调用OS参与并发操作。</li>
+</ul>
+</blockquote>
+<h2 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h2><blockquote>
+<ul>
+<li><a href="http://wiki.jikexueyuan.com/project/java-nio/" target="_blank" rel="external">Java NIO指南</a></li>
+<li><a href="http://www.ibm.com/developerworks/cn/education/java/j-nio/j-nio.html" target="_blank" rel="external">NIO入门</a></li>
 </ul>
 </blockquote>
       
@@ -290,7 +303,7 @@
         <p><span>本文标题:</span><a href="/2016/04/04/nio/">Java面试复习（I/O）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">AllSKY</a></p>
         <p><span>发布时间:</span>2016-04-04, 22:39:46</p>
-        <p><span>最后更新:</span>2016-04-04, 23:20:05</p>
+        <p><span>最后更新:</span>2016-04-07, 01:04:51</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/04/04/nio/" title="Java面试复习（I/O）">http://zskyer.github.io/2016/04/04/nio/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zskyer.github.io/2016/04/04/nio/　　作者: AllSKY" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
